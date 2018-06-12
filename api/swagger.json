@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Reports API",
-    "description": "API for OnCare Reports",
+    "title": "API",
+    "description": "API for We Production",
     "version": "1.0.0"
   },
   "produces": ["application/json"],
@@ -10,90 +10,24 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "report",
-      "description": "Reports"
+      "name": "video",
+      "description": "Videos"
     }
   ],
   "paths": {
-    "/report": {
+    "/video": {
       "get": {
         "tags": [
-          "report"
+          "video"
         ],
-        "x-swagger-router-controller": "report",
+        "x-swagger-router-controller": "video",
         "operationId": "GET",
-        "description": "Returns a list of reports",
+        "description": "Returns a list of videos",
         "responses": {
           "200": {
-            "description": "Reports list",
+            "description": "Video list",
             "schema": {
-              "$ref": "#/definitions/Report"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "report"
-        ],
-        "x-swagger-router-controller": "report",
-        "operationId": "POST",
-        "description": "Create report",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "The report details",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Report"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Newly created report",
-            "schema": {
-              "$ref": "#/definitions/Report"
-            }
-          },
-          "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
-    "/report/{id}": {
-      "get": {
-        "tags": [
-          "report"
-        ],
-        "x-swagger-router-controller": "report",
-        "operationId": "GET",
-        "description": "Fetch a report",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The report ID to fetch",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Report details",
-            "schema": {
-              "$ref": "#/definitions/Report"
+              "$ref": "#/definitions/Video"
             }
           },
           "default": {
@@ -131,12 +65,8 @@
         }
       }
     },
-    "Report": {
-      "required": ["notes"],
+    "Video": {
       "properties": {
-        "id": {
-          "type": "number"
-        },
         "user_id": {
           "type": "number"
         },

@@ -1,0 +1,36 @@
+@import "colors"
+@import "../../node_modules/bulma/sass/utilities/mixins"
+
+
+.fixed-menu-container
+  background-color: white
+
++desktop()
+  .is-fixed-top-desktop
+    position: fixed
+
+  .fixed-menu-container
+    width: 380px
+    min-height: 90vh
+    box-shadow: 1px 0 1px rgba(0,0,0,.16)
+
+  .fixed-menu
+    padding: 6rem 2rem 2rem
+    width: 360px
+
+  .page-container
+    padding: 11rem 6rem 6rem
+
++touch()
+  .fixed-menu-container
+    box-shadow: 0 1px 1px rgba(0,0,0,.16)
+
+  .fixed-menu
+    padding: 6rem 1rem 1rem
+
+    &.is-off-screen
+      transform: translateY(-100%)
+
+  .page-container
+    padding: 2rem
+

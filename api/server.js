@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const config = require('config');
 const HOST = config.get('server.hostname');
 const PORT = config.get('server.port');

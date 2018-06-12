@@ -1,12 +1,46 @@
-@import "../layout/colors";
+@import "../layout/colors"
+
+.video-preview
+  position: relative
+
+.video-duration
+  position: absolute
+  right: .5rem
+  bottom: .5rem
+  padding: .25rem .5rem
+  border-radius: 3px
+  background: $black
+  color: $white
+  font-size: .75rem
+  line-height: 100%
+  font-family: 'Roboto Condensed', serif
+  font-weight: 700
+  opacity: .5
 
 .video-category
-  position: relative
+  position: absolute
   transform-origin: bottom right
-  transform: translate(-100%, 0) rotate(-90deg)
+  transform: translate(-100%, -1rem) rotate(-90deg)
   text-align: right
   color: $primary
   font-family: 'Roboto Condensed', sans-serif
   font-weight: 300
   letter-spacing: 2px
   font-size: .75rem
+
+.video-play
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  cursor: pointer
+  text-align: center
+  padding-top: 20%
+  opacity: .5
+  mix-blend-mode: luminosity
+  color: #ccc
+
+  &:hover
+    color: #ddd
+    opacity: .5

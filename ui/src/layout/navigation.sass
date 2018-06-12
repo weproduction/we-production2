@@ -1,9 +1,15 @@
-@import "colors";
+@import "colors"
+@import "../../node_modules/bulma/sass/utilities/mixins"
 
 .navbar
   background-color: $light
   box-shadow: 0 1px 1px rgba(0,0,0,.16)
   transition: all .3s ease-in-out
+
+
+  +touch()
+    &.is-off-screen
+      transform: translateY(-100%)
 
   img
     transition: all .1s ease-in-out
@@ -12,8 +18,22 @@
     background-color: transparent
     box-shadow: none
 
+    .navbar-burger
+      color: $white
+
+    +desktop()
+      &
+        .navbar-item
+          color: $white
+
+          &:hover
+            color: $primary
+
     img
       max-height: 3em
+
+  & .navbar-item.is-active
+    color: $primary
 
   &-item
     font-family: 'Roboto Condensed', sans-serif

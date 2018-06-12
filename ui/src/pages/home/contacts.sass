@@ -1,27 +1,22 @@
-@import "../../layout/colors";
-@import "../../../node_modules/bulma/sass/utilities/mixins";
+@import "../../layout/colors"
+@import "../../../node_modules/bulma/sass/utilities/mixins"
 
 .contact-map
-  background-image: url(/img/map.png)
-  background-repeat: no-repeat
-  background-position: 100% 50%
+  background: no-repeat 100% 50%
+  min-height: 40vw
+  position: relative
+
+  +retina-bg('/img/map.png', '/img/map@2x.png')
   background-size: contain
 
-  @media only screen and (-moz-min-device-pixel-ratio: 1.5)
-    &
-      background-image: url(/img/map@2x.png)
-  @media only screen and (-o-min-device-pixel-ratio: 3/2)
-    &
-      background-image: url(/img/map@2x.png)
-  @media only screen and (-webkit-min-device-pixel-ratio: 1.5)
-    &
-      background-image: url(/img/map@2x.png)
-  @media only screen and (min-devicepixel-ratio: 1.5)
-    &
-      background-image: url(/img/map@2x.png)
-  @media only screen and (min-resolution: 1.5dppx)
-    &
-      background-image: url(/img/map@2x.png)
+  &::before
+    content: ' '
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background: linear-gradient(to right, $light 0%, $light 25vw, rgba($light, 0.2) 45vw, rgba($light, 0) 100%)
 
   +mobile()
     &
@@ -33,11 +28,93 @@
 
   +desktop()
     &
-      background-position: 0% 50%
+      background-position: 20vw 50%
+      max-height: 40vw
+
+  .column
+    transition: width .5s ease-in-out
 
 .contacts
   &-wrapper
-    background-image: linear-gradient(to right, $light 0%, $light 35%, rgba($light, 0) 100%)
+    background-image: none
 
   &-container
-    padding: 5rem 2rem
+    padding: 5rem 1rem 5rem 1rem
+    z-index: 1
+    position: relative
+
+    +desktop()
+      &
+        padding: 7rem 1rem 5rem 2rem
+
+.gallery-container
+  overflow: hidden
+  position: relative
+
+.nav-dots
+  width: 100%
+  bottom: 9px
+  height: 11px
+  display: block
+  position: absolute
+  text-align: center
+
+.nav-dots .nav-dot
+  top: -5px
+  width: 9px
+  height: 9px
+  margin: 0 4px
+  position: relative
+  border-radius: 100%
+  display: inline-block
+  background-color: rgba(0, 0, 0, 0.6)
+  box-shadow: 0 0 1px 1px rgba(255,255,255,.6)
+
+.nav-dots .nav-dot:hover
+  cursor: pointer
+  background-color: rgba(0, 0, 0, 0.8)
+
+.nav-dots .nav-dot.is-active
+  background-color: rgba(0, 0, 0, 0.8)
+
+.gallery
+  &-enter
+    position: absolute
+    z-index: 1
+    filter: blur(5px) grayscale(50%)
+    opacity: 0
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+    &-active
+      transition: 1.5s ease-in-out
+      opacity: 1
+      filter: blur(0) grayscale(0)
+
+  &-exit
+    position: absolute
+    z-index: 0
+    opacity: 1
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+    &-active
+      opacity: .9
+      transition: 1.5s ease-in-out
+
+  &-wrapper
+    position: relative
+    height: 40vw
+
+    .image
+      position: absolute
+      top: 0
+      bottom: 0
+      right: 33%
+      width: 75vw
+      transform: translateX(33%)
+

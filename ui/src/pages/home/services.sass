@@ -1,5 +1,5 @@
 @import "../../layout/colors"
-@import "../../../node_modules/bulma/sass/utilities/mixins";
+@import "../../../node_modules/bulma/sass/utilities/mixins"
 
 
 +desktop()
@@ -85,38 +85,48 @@
       pointer-events: none
 
 .services-cover
-  @media only screen and (-moz-min-device-pixel-ratio: 1.5)
-    &
-      background-image: url(/img/services@2x.png)
-  @media only screen and (-o-min-device-pixel-ratio: 3/2)
-    &
-      background-image: url(/img/services@2x.png)
-  @media only screen and (-webkit-min-device-pixel-ratio: 1.5)
-    &
-      background-image: url(/img/services@2x.png)
-  @media only screen and (min-devicepixel-ratio: 1.5)
-    &
-      background-image: url(/img/services@2x.png)
-  @media only screen and (min-resolution: 1.5dppx)
-    &
-      background-image: url(/img/services@2x.png)
+  +retina-bg('/img/services.png', '/img/services@2x.png')
 
 +touch()
   .services
     &-cover
       background-image: none
 
-    &-header, &-column
+    &-header
       padding: 5rem 1.5rem 2.5rem
+
+    &-column
+      padding: 6rem 9rem 2.5rem 1.5rem
 
     .project &-column
       background-color: $light-mint
+      background-image: url(/img/projects-bg@2x.png)
+      background-size: 225px 240px
+      background-position: 95% 0
+      background-repeat: no-repeat
 
     .crew &-column
       background-color: $light-purple
+      background-image: url(/img/crew-bg@2x.png)
+      background-size: 225px 240px
+      background-position: 100% 0
+      background-repeat: no-repeat
 
     .drone &-column
       background-color: $light-cyan
+      background-image: url(/img/drone-bg@2x.png)
+      background-size: 225px 240px
+      background-position: 100% 0
+      background-repeat: no-repeat
 
-    .multi &-column
+    .multicam &-column
       background-color: $light-peach
+      background-image: url(/img/multicam-bg@2x.png)
+      background-size: 225px 240px
+      background-position: 100% 0
+      background-repeat: no-repeat
+
++tablet-only()
+  .services .services-column
+    background-size: 25%
+    background-position: 100% 0

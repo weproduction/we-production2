@@ -6,9 +6,11 @@ import { Translate } from 'react-localize-redux';
 import reveal from "scrollreveal";
 
 import './crew.sass';
+import {withCrew} from "../../context";
 
 const sr = reveal();
 
+@withCrew
 export default class Crew extends React.Component {
     componentDidMount() {
         const nodes = this.crewRefs.map(x => x.current);
@@ -18,42 +20,6 @@ export default class Crew extends React.Component {
     render() {
         const { crew } = this.props;
         this.crewRefs = crew.map(() => React.createRef());
-
-        const crewComponents = crew.map((person, index) => (
-            <div key={index} className="crew-member" ref={this.crewRefs[index]}>
-                <figure className="image is-128x128 is-inline-block">
-                    <Image src={"/crew/" + encodeURI(person.photo)} />
-                </figure>
-                <div className="crew-member-details has-text-centered">
-                    <Translate>
-                        {({ translate, activeLanguage}) => {
-                            const lang = activeLanguage ? activeLanguage.code : 'en';
-                            const name = person[`name_${lang}`];
-                            const position = person[`position_${lang}`];
-
-                            return (
-                                <div className="block">
-                                    <p className="title is-6 is-marginless">{name}</p>
-                                    <p className="subtitle is-7 is-marginless has-font-caveat">{position}</p>
-                                </div>
-                            )
-                        }}
-                    </Translate>
-                    <div className="block">
-                        <a href="javascript:" className="has-text-white is-size-7">
-                            <Icon>
-                                <i className="fab fa-facebook-f"></i>
-                            </Icon>
-                        </a>
-                        <a href="javascript:" className="has-text-white is-size-7">
-                            <Icon>
-                                <i className="fab fa-twitter"></i>
-                            </Icon>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        ));
 
         return (
             <section className="section">
@@ -74,7 +40,47 @@ export default class Crew extends React.Component {
                                 </div>
                             </div>
                             <div className="column is-full-touch">
-                                {crewComponents}
+                                {crew.map((person, index) => (
+                                    <div key={index} className="crew-member" ref={this.crewRefs[index]}>
+                                        <figure className="image is-64x64 is-inline-block is-hidden-tablet">
+                                            <Image src={"/crew/" + encodeURI(person.photo)} />
+                                        </figure>
+                                        <figure className="image is-128x128 is-inline-block is-hidden-desktop is-hidden-mobile">
+                                            <Image src={"/crew/" + encodeURI(person.photo)} />
+                                        </figure>
+                                        <figure className="image is-144x144 is-inline-block is-hidden-touch">
+                                            <Image src={"/crew/" + encodeURI(person.photo)} />
+                                        </figure>
+                                        <div className="crew-member-details is-inline-block-touch">
+                                            <Translate>
+                                                {({ activeLanguage}) => {
+                                                    const lang = activeLanguage ? activeLanguage.code : 'en';
+                                                    const name = person[`name_${lang}`];
+                                                    const position = person[`position_${lang}`];
+
+                                                    return (
+                                                        <div className="block">
+                                                            <p className="title is-6 is-marginless">{name}</p>
+                                                            <p className="subtitle is-7 is-marginless has-font-caveat">{position}</p>
+                                                        </div>
+                                                    )
+                                                }}
+                                            </Translate>
+                                            <div className="block is-hidden-mobile">
+                                                <a href="javascript:" className="has-text-white is-size-7">
+                                                    <Icon>
+                                                        <i className="fab fa-facebook-f"></i>
+                                                    </Icon>
+                                                </a>
+                                                <a href="javascript:" className="has-text-white is-size-7">
+                                                    <Icon>
+                                                        <i className="fab fa-twitter"></i>
+                                                    </Icon>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

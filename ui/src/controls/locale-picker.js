@@ -7,7 +7,7 @@ export const LocalePicker = withLocalize(({ languages, activeLanguage, setActive
             <a key={lang.code}
                href="javascript:"
                onClick={() => setActiveLanguage(lang.code)}
-               className={"navbar-item " + (lang.code === activeLanguage ? 'is-active' : '')}>{lang.short}</a>
+               className={"navbar-item " + (lang.code === (activeLanguage && activeLanguage.code) ? 'is-active' : '')}>{lang.short}</a>
         ))}
     </Fragment>
 ));

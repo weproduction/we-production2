@@ -9,12 +9,15 @@ import Home from './pages/home';
 import Videos from './pages/videos';
 import Services from './pages/services';
 import Player from "./pages/player";
+import Contacts from "./pages/contacts";
 
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize } from "react-localize-redux";
 
-import localeEN from './locale.en';
-import localeUK from './locale.uk';
+import localeEN from './data/locale.en';
+import localeUK from './data/locale.uk';
+
+import { ContactsProvider, CrewProvider, ClientsProvider, FeedbackProvider } from "./context";
 
 @withLocalize
 class App extends Component {
@@ -27,8 +30,7 @@ class App extends Component {
             { name: "Українська", code: "uk", short: 'Укр' }
         ];
 
-        const [ browserLanguage ] = (window.navigator.browserLanguage || window.navigator.language || 'en').split('-');
-        console.log(browserLanguage);
+        const [ browserLanguage ] = (window.navigator.language || window.localStorage.getItem('locale') || 'en').split('-');
 
         let defaultLanguage = browserLanguage;
         if (!languages.some(x => x.code === browserLanguage)) {
@@ -46,14 +48,21 @@ class App extends Component {
 
     render() {
         return (
-            <Fragment>
-                <Navigation fixed={true}/>
-                <Route exact path="/" component={Home} />
-                <Route path="/videos/:category?/:tag?" component={Videos} />
-                <Route path="/services/:service?" component={Services} />
-                <Footer/>
-                <Player/>
-            </Fragment>
+            <ContactsProvider>
+                <CrewProvider>
+                    <ClientsProvider>
+                        <FeedbackProvider>
+                            <Navigation fixed={window.location.pathname === '/'}/>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/videos/:category?/:tag?" component={Videos} />
+                            <Route path="/services/:service?" component={Services} />
+                            <Route path="/contact" component={Contacts} />
+                            <Footer/>
+                            <Player/>
+                        </FeedbackProvider>
+                    </ClientsProvider>
+                </CrewProvider>
+            </ContactsProvider>
         );
     }
 }

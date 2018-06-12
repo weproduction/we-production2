@@ -1,5 +1,5 @@
 const defaults = {
-    video: 116772070,
+    video: undefined,
     paused: false,
     active: false
 };

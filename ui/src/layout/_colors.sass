@@ -17,3 +17,28 @@ $light-peach: #FBEED0
 $modal-content-width: 90vw
 
 $link: $primary
+
+$dimensions: 16 32 64 128 144 160 192 256
+
+=retina-bg($url1x, $url2x)
+  background-image: url($url1x)
+
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5)
+    &
+      background-image: url($url2x)
+
+  @media only screen and (-o-min-device-pixel-ratio: 3/2)
+    &
+      background-image: url($url2x)
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5)
+    &
+      background-image: url($url2x)
+
+  @media only screen and (min-devicepixel-ratio: 1.5)
+    &
+      background-image: url($url2x)
+
+  @media only screen and (min-resolution: 1.5dppx)
+    &
+      background-image: url($url2x)

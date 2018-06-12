@@ -11,14 +11,30 @@
     right: 0
     bottom: 0
     left: 0
+    z-index: 0
 
   &-play
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
+    position: relative
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
     text-align: center
-    opacity: .5
+    opacity: 0
+    z-index: 1
+    vertical-align: middle
+    transition: opacity 2s ease-in-out
+
+    &.is-mouse-active
+      opacity: .5
+      transition: opacity .3s ease-in-out
+
+    &.is-paused
+      opacity: .75
+      transition: opacity .1s ease-in-out
+
+    .content:first-child
+      margin-top: 25%
 
     &, *
       color: $white

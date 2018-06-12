@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
+import PropTypes from 'prop-types';
 
 @connect(
     (state, ownProps = {}) => {
@@ -14,6 +15,14 @@ import { push } from "react-router-redux";
     })
 )
 export class ActiveLink extends React.Component {
+    static propTypes = {
+        to: PropTypes.string.isRequired,
+        tagName: PropTypes.oneOf(['a', 'button']),
+        className: PropTypes.string,
+        disabled: PropTypes.bool,
+        onNavigate: PropTypes.func
+    };
+
     render() {
         const {tagName, children, className, disabled, to} = this.props;
         const whiteList = {
@@ -24,6 +33,12 @@ export class ActiveLink extends React.Component {
 
         const navigate = e => {
             e.preventDefault();
+
+            if (typeof this.props.onNavigate === 'function'){
+                if (this.props.onNavigate(e) === false) {
+                    return ;
+                }
+            }
 
             let target = e.target;
             while (target && target.tagName !== 'A') {
@@ -45,7 +60,7 @@ export class ActiveLink extends React.Component {
 
             default:
                 return (
-                    <a {...whiteList} onClick={navigate} href="javascript: void 0">
+                    <a {...whiteList} onClick={navigate} href={to}>
                         {children}
                     </a>
                 );

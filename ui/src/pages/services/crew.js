@@ -45,7 +45,7 @@ export default class Crew extends Component {
                 <div className="block">
                     <ActiveLink to="/" className="has-text-dark is-size-7">
                         <Icon>
-                            <i className="fa fa-arrow-left"></i>
+                            <i className="fas fa-arrow-left"></i>
                         </Icon>
                         <Translate id="buttons.back-to-home"/>
                     </ActiveLink>

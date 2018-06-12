@@ -3,22 +3,16 @@ import Image from 'react-retina-image';
 import { Icon } from 'react-bulma-components';
 import { Translate } from 'react-localize-redux';
 
-import { FollowUs } from "../controls";
+import { FollowUs } from '../controls';
+
+import { withContacts } from '../context';
 
 import './footer.sass';
 
-import { connect } from "react-redux";
-
-@connect(
-    (state, ownProps = {}) => {
-        return {
-            contacts: state.contacts
-        }
-    }
-)
+@withContacts
 export default class Footer extends React.Component {
     render() {
-        const { email, phone, address} = this.props.contacts;
+        const { email, phone, address_en, address_uk} = this.props.contacts;
         return (
             <footer className="footer has-text-light">
                 <div className="container">
@@ -65,7 +59,11 @@ export default class Footer extends React.Component {
                             <p className="content is-size-7">
                                 <a href={`mailto:${email}`} className="has-text-light">{email}</a>
                                 <br/>
-                                {address}
+                                <Translate>
+                                    {({activeLanguage}) => (
+                                        <span>{activeLanguage && activeLanguage.code === 'uk' ? address_uk : address_en}</span>
+                                    )}
+                                </Translate>
                                 <br/>
                                 <a href={`tel:${phone}`} className="has-text-light">{phone}</a>
                             </p>

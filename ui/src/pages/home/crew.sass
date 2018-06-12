@@ -1,6 +1,11 @@
 @import "../../layout/colors"
 @import "../../../node_modules/bulma/sass/utilities/mixins"
 
++mobile()
+  .crew-member-details
+    vertical-align: top
+    padding: 1rem
+
 +tablet()
   .crew-member
     display: inline-block
@@ -18,6 +23,7 @@
       background-color: $primary
       padding: 1rem .5rem
       transition: opacity .3s ease-in-out
+      text-align: center
 
       .title
         color: $white

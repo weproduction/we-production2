@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 import {Vimeo} from "../controls";
 
@@ -12,10 +12,22 @@ import { connect } from "react-redux";
     }
 )
 export default class Player extends React.Component {
+    constructor() {
+        super();
+
+        this.playerRef = React.createRef();
+    }
+
     close() {
         this.props.dispatch({
             type: 'VIDEO_STOP'
         });
+    }
+
+    reset() {
+        setTimeout(() => {
+            this.playerRef.current.player.unload();
+        }, 200);
     }
 
     render() {
@@ -28,11 +40,12 @@ export default class Player extends React.Component {
                     <div className="modal-content">
                         <div style={{width: '90vw', height: '50.625vw', position: 'relative'}}>
                             <Vimeo
+                                ref={this.playerRef}
                                 style={{width:'100%', height:'100%'}}
                                 video={video}
                                 autoplay={true}
                                 paused={paused}
-                                background
+                                onEnd={() => this.reset()}
                             />
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Player from '@vimeo/player';
 
 const eventNames = {
@@ -36,26 +36,6 @@ export class Vimeo extends React.Component {
 
     componentWillUnmount() {
         this.player.destroy();
-    }
-
-    /**
-     * @private
-     */
-    getInitialOptions() {
-        return {
-            id: this.props.video,
-            width: this.props.width,
-            height: this.props.height,
-            autopause: this.props.autopause,
-            autoplay: this.props.autoplay,
-            byline: this.props.showByline,
-            color: this.props.color,
-            loop: this.props.loop,
-            portrait: this.props.showPortrait,
-            title: this.props.showTitle,
-            muted: this.props.muted,
-            background: this.props.background,
-        };
     }
 
     /**
@@ -113,7 +93,7 @@ export class Vimeo extends React.Component {
      * @private
      */
     createPlayer() {
-        this.player = new Player(this.containerRef.current, this.getInitialOptions());
+        this.player = new Player(this.containerRef.current);
 
         Object.keys(eventNames).forEach((dmName) => {
             const reactName = eventNames[dmName];
@@ -131,20 +111,28 @@ export class Vimeo extends React.Component {
         if (typeof this.props.volume === 'number') {
             this.updateProps(['volume']);
         }
+    }
 
-        setTimeout(() => {
-            this.player.element.setAttribute('width', '100%');
-            this.player.element.setAttribute('height', '100%');
-        }, 300);
+    getUrl() {
+        const query = ['background', 'muted', 'autoplay', 'playsinline', 'loop']
+            .filter(prop => this.props[prop] !== undefined)
+            .map(prop => `${prop}=${this.props[prop] ? '1' : '0'}`);
+
+        return `https://player.vimeo.com/video/${this.props.video}?${query.join('&')}`;
     }
 
     render() {
         return (
-            <div
-                id={this.props.id}
+            <iframe
+                width="100%"
+                height="100%"
+                frameBorder="0"
                 className={this.props.className}
-                style={this.props.style}
+                src={this.getUrl()}
                 ref={this.containerRef}
+                webkitallowfullscreen=""
+                mozallowfullscreen=""
+                allowFullScreen
             />
         );
     }

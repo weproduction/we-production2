@@ -4,31 +4,13 @@ import Image from 'react-retina-image';
 import { Translate } from 'react-localize-redux';
 
 import './clients.sass';
+import {withClients} from "../../context";
 
+@withClients
 export default class Clients extends React.Component {
 
     render() {
-        const { faces, logos} = this.props;
-
-        const facesComponents = faces.map((face, index) => (
-            <a href={face.link} className="scroll-item" key={index}>
-                <div className="has-text-centered">
-                    <figure className="image is-128x128 is-inline-block">
-                        <Image src={"/clients/" + encodeURI(face.image)}/>
-                    </figure>
-                    <br/>
-                    <p className="content is-6 has-text-dark">{face.name}</p>
-                </div>
-            </a>
-        ));
-
-        const logosComponents = logos.map((logo, index) => (
-            <a href={logo.link} className="scroll-item" key={index}>
-                <figure className="image is-128x128 is-inline-block">
-                    <Image src={"/clients/" + encodeURI(logo.image)}/>
-                </figure>
-            </a>
-        ));
+        const { faces, logos } = this.props;
 
         return (
             <section className="section">
@@ -44,7 +26,20 @@ export default class Clients extends React.Component {
                                 <Translate id="home.clients.faces"/>
                             </h4>
                             <div className="clients-list scrolling-wrapper-flexbox">
-                                {facesComponents}
+                                {faces.map((face, index) => (
+                                    <a href={face.link} className="scroll-item" key={index}>
+                                        <div className="has-text-centered">
+                                            <figure className="image is-64x64 is-inline-block is-hidden-tablet">
+                                                <Image src={"/clients/" + encodeURI(face.image)}/>
+                                            </figure>
+                                            <figure className="image is-128x128 is-inline-block is-hidden-mobile">
+                                                <Image src={"/clients/" + encodeURI(face.image)}/>
+                                            </figure>
+                                            <br/>
+                                            <p className="content is-6 has-text-dark">{face.name}</p>
+                                        </div>
+                                    </a>
+                                ))}
                             </div>
                         </div>
                         <div className="block">
@@ -52,7 +47,16 @@ export default class Clients extends React.Component {
                                 <Translate id="home.clients.logos"/>
                             </h4>
                             <div className="clients-list scrolling-wrapper-flexbox">
-                                {logosComponents}
+                                {logos.map((logo, index) => (
+                                    <a href={logo.link} className="scroll-item" key={index}>
+                                        <figure className="image is-64x64 is-inline-block is-hidden-tablet">
+                                            <Image src={"/clients/" + encodeURI(logo.image)}/>
+                                        </figure>
+                                        <figure className="image is-128x128 is-inline-block is-hidden-mobile">
+                                            <Image src={"/clients/" + encodeURI(logo.image)}/>
+                                        </figure>
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>

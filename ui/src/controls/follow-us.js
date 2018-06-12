@@ -2,16 +2,9 @@ import React, {Fragment} from 'react';
 
 import { Icon } from 'react-bulma-components';
 
+import { withContacts } from '../context';
 
-import { connect } from "react-redux";
-
-@connect(
-    (state, ownProps = {}) => {
-        return {
-            contacts: state.contacts
-        }
-    }
-)
+@withContacts
 export class FollowUs extends React.Component {
     render() {
         const { facebook, twitter, youtube, vimeo } = this.props.contacts;

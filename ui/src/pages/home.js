@@ -7,40 +7,38 @@ import Production from './home/production';
 import Crew from './home/crew';
 import Clients from './home/clients';
 import Contacts from './home/contacts';
+import Feedback from './home/feedback';
 
 import { connect } from "react-redux";
 
 @connect(
     (state, ownProps = {}) => {
         return {
-            showreel: state.showreel,
-            categories: state.categories,
-            blog: state.blog,
-            services: state.services,
-            crew: state.crew,
-            clients: state.clients,
-            contacts: state.contacts
+            videos: state.videos,
+            feedback: state.feedback
         }
     }
 )
 export default class Home extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     render() {
-        const {showreel, categories, blog, services, crew, clients, contacts} = this.props;
+        const {videos, feedback} = this.props;
+        const featured = videos.filter(video => ~video.categories.indexOf('featured'));
+        const showreel = featured.shift();
+        const blog = featured.slice(0, 2);
         return (
             <Fragment>
                 <Showreel {...showreel}/>
-                <AboutUs categories={categories} blog={blog}/>
-                <Services services={services}/>
+                <AboutUs blog={blog}/>
+                <Services/>
                 <Production/>
-                <Crew crew={crew}/>
-                <section className="section">
-                    <div className="container">
-                        <h2 className="title is-1 is-spaced">Відгуки</h2>
-                        <div className="block" style={{height: '20rem'}}></div>
-                    </div>
-                </section>
-                <Clients {...clients}/>
-                <Contacts {...contacts}/>
+                <Crew/>
+                <Feedback feedback={feedback}/>
+                <Clients/>
+                <Contacts />
             </Fragment>
         )
     }
