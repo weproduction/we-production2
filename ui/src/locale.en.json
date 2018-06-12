@@ -1,0 +1,24 @@
+{
+  "headers": {
+    "we-production": "We Production Studio"
+  },
+  "buttons": {
+    "details": "Details",
+    "back-to-home": "Back",
+    "play-showreel": "Play Showreel",
+    "call-now": "Call now"
+  },
+  "home": {
+    "link": "Home",
+    "contacts": "Contacts"
+  },
+  "video": {
+    "link": "Video"
+  },
+  "services": {
+    "link": "Services"
+  },
+  "contacts": {
+    "link": "Contacts"
+  }
+}

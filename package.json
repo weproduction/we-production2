@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "pm2": "^2.10.0"
+  },
+  "license": "MIT",
+  "name": "react-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd ui && npm i && npm run build && cd ../api && npm i",
+    "start": "node index.js",
+    "nginx": "nginx -c $PWD/config/nginx.conf"
+  }
+}

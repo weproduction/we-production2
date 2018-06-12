@@ -1,0 +1,11 @@
+{
+  "apps" : [{
+    "name"        : "ui",
+    "cwd"         : "./ui",
+    "script"      : "./index.js"
+  }, {
+    "name"       : "api",
+    "cwd"        : "./api",
+    "script"     : "./index.js"
+  }]
+}

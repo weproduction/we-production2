@@ -1,0 +1,43 @@
+@import "../../layout/colors";
+@import "../../../node_modules/bulma/sass/utilities/mixins";
+
+.contact-map
+  background-image: url(/img/map.png)
+  background-repeat: no-repeat
+  background-position: 100% 50%
+  background-size: contain
+
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5)
+    &
+      background-image: url(/img/map@2x.png)
+  @media only screen and (-o-min-device-pixel-ratio: 3/2)
+    &
+      background-image: url(/img/map@2x.png)
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5)
+    &
+      background-image: url(/img/map@2x.png)
+  @media only screen and (min-devicepixel-ratio: 1.5)
+    &
+      background-image: url(/img/map@2x.png)
+  @media only screen and (min-resolution: 1.5dppx)
+    &
+      background-image: url(/img/map@2x.png)
+
+  +mobile()
+    &
+      background-image: none
+
+  +tablet()
+    &
+      background-position: 100% 50%
+
+  +desktop()
+    &
+      background-position: 0% 50%
+
+.contacts
+  &-wrapper
+    background-image: linear-gradient(to right, $light 0%, $light 35%, rgba($light, 0) 100%)
+
+  &-container
+    padding: 5rem 2rem

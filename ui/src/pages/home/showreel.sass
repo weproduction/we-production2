@@ -1,0 +1,32 @@
+@import "../../layout/colors"
+@import "../../../node_modules/bulma/sass/utilities/mixins"
+
+.showreel
+  position: relative
+  height: 56.25vw
+
+  &-body
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+  &-play
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    text-align: center
+    opacity: .5
+
+    &, *
+      color: $white
+
+  +touch()
+    &
+      height: 56vw
+
+  +mobile()
+    &
+      min-height: 240px

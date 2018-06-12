@@ -1,0 +1,155 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Reports API",
+    "description": "API for OnCare Reports",
+    "version": "1.0.0"
+  },
+  "produces": ["application/json"],
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "report",
+      "description": "Reports"
+    }
+  ],
+  "paths": {
+    "/report": {
+      "get": {
+        "tags": [
+          "report"
+        ],
+        "x-swagger-router-controller": "report",
+        "operationId": "GET",
+        "description": "Returns a list of reports",
+        "responses": {
+          "200": {
+            "description": "Reports list",
+            "schema": {
+              "$ref": "#/definitions/Report"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "report"
+        ],
+        "x-swagger-router-controller": "report",
+        "operationId": "POST",
+        "description": "Create report",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The report details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Report"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Newly created report",
+            "schema": {
+              "$ref": "#/definitions/Report"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/report/{id}": {
+      "get": {
+        "tags": [
+          "report"
+        ],
+        "x-swagger-router-controller": "report",
+        "operationId": "GET",
+        "description": "Fetch a report",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The report ID to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Report details",
+            "schema": {
+              "$ref": "#/definitions/Report"
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Success": {
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Report": {
+      "required": ["notes"],
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "user_id": {
+          "type": "number"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "check_in_time": {
+          "type": "string"
+        },
+        "check_out_time": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

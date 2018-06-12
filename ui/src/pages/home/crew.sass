@@ -1,0 +1,30 @@
+@import "../../layout/colors"
+@import "../../../node_modules/bulma/sass/utilities/mixins"
+
++tablet()
+  .crew-member
+    display: inline-block
+    position: relative
+    padding: .5rem
+
+    &-details
+      opacity: 0
+      position: absolute
+      top: 1rem
+      right: 1rem
+      bottom: 1.5rem
+      left: 1rem
+      border-radius: 1rem
+      background-color: $primary
+      padding: 1rem .5rem
+      transition: opacity .3s ease-in-out
+
+      .title
+        color: $white
+
+      .subtitle
+        color: $dark
+
+
+    &:hover &-details
+      opacity: .85

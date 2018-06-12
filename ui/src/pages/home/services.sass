@@ -1,0 +1,122 @@
+@import "../../layout/colors"
+@import "../../../node_modules/bulma/sass/utilities/mixins";
+
+
++desktop()
+  .services
+    position: relative
+
+    &-cover
+      content: ' '
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-image: url(/img/services.png)
+      background-repeat: no-repeat
+      background-size: cover
+      background-position: center 100%
+      z-index: 1
+
+      transition: background-position .1s
+
+    &-column
+      padding: 500px 2em 2em
+
+      &::before, &::after
+        content: ' '
+        top: 0
+        left: 0
+        bottom: 0
+        width: 25%
+        position: absolute
+
+      &::before
+        background-color: $white
+        opacity: .75
+        z-index: 2
+
+      &:hover::before
+        opacity: 0
+
+      &::after
+        z-index: 0
+        opacity: 0
+
+      &:hover::after
+        opacity: 1
+
+    &-content
+      position: relative
+      z-index: 3
+
+    .project &-column
+      &::before, &::after
+        left: 0
+      &::after
+        background-color: $light-mint
+
+    .crew &-column
+      &::before, &::after
+        left: 25%
+      &::after
+        background-color: $light-purple
+
+    .drone &-column
+      &::before, &::after
+        left: 50%
+      &::after
+        background-color: $light-cyan
+
+    .multicam &-column
+      &::before, &::after
+        left: 75%
+      &::after
+        background-color: $light-peach
+
+    &-header
+      padding: 6rem 1.5rem 1.5rem
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      z-index: 3
+      pointer-events: none
+
+.services-cover
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5)
+    &
+      background-image: url(/img/services@2x.png)
+  @media only screen and (-o-min-device-pixel-ratio: 3/2)
+    &
+      background-image: url(/img/services@2x.png)
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5)
+    &
+      background-image: url(/img/services@2x.png)
+  @media only screen and (min-devicepixel-ratio: 1.5)
+    &
+      background-image: url(/img/services@2x.png)
+  @media only screen and (min-resolution: 1.5dppx)
+    &
+      background-image: url(/img/services@2x.png)
+
++touch()
+  .services
+    &-cover
+      background-image: none
+
+    &-header, &-column
+      padding: 5rem 1.5rem 2.5rem
+
+    .project &-column
+      background-color: $light-mint
+
+    .crew &-column
+      background-color: $light-purple
+
+    .drone &-column
+      background-color: $light-cyan
+
+    .multi &-column
+      background-color: $light-peach
