@@ -24,7 +24,7 @@ export default class Services extends React.Component {
     render() {
         const { services } = this.state;
         const { params = {} } = this.props.match;
-        const { service = services[0].id } = params;
+        const { service = services[0] } = params;
 
         const menuComponents = services.map(to => (
             <li>
