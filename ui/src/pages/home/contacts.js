@@ -38,9 +38,11 @@ export default class Contacts extends React.Component {
         });
 
         gallery.forEach(photo => {
-            const img = new window.Image();
-            img.src = `/gallery/${photo}`;
-            img.onload = () => {};
+            const link = document.createElement("link");
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = `/gallery/${photo}`;
+            document.head.appendChild(link);
         });
     }
 
