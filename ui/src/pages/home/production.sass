@@ -67,7 +67,8 @@ $steps: (step1 13% 34% 14% 165%) (step2 13% 68% 13% 145%) (step3 13% 24% 48% 135
       $w: nth($stepx, 2)
       $h: nth($stepx, 5)
       &-#{$step} &-step-wrapper
-        background-image: url("/img/pp-#{$step}@2x.png")
+        +retina-bg('/img/pp-#{$step}.png', '/img/pp-#{$step}@2x.png')
+
       &-#{$step}
         width: $w
         left: $l
@@ -95,7 +96,7 @@ $steps: (step1 13% 34% 14% 165%) (step2 13% 68% 13% 145%) (step3 13% 24% 48% 135
     @each $stepx in $steps
       $step: nth($stepx, 1)
       &-#{$step}
-        background-image: url("/img/pp-#{$step}@2x.png")
+        +retina-bg('/img/pp-#{$step}.png', '/img/pp-#{$step}@2x.png')
 
     b
       position: absolute
