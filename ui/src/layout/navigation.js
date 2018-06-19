@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Translate } from 'react-localize-redux';
+import Image from 'react-retina-image';
 
 import { ActiveLink, FollowUs, LocalePicker } from "../controls";
 
@@ -88,7 +89,7 @@ export default class Navigation extends React.Component {
             <nav className={`navbar is-fixed-top ${fixedClass}`} ref={this.navbarRef}>
                 <div className="navbar-brand">
                     <ActiveLink to="/" className="navbar-item" onNavigate={() => this.goTop()}>
-                        <img src="/img/logo@2x.png" alt="We Production"/>
+                        <Image src="/img/logo.png" alt="We Production"/>
                     </ActiveLink>
                     <div className="navbar-burger burger" onClick={() => this.burgerClickHandler()}>
                         <span></span>
