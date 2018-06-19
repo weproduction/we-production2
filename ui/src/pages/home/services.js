@@ -5,6 +5,9 @@ import { Translate } from 'react-localize-redux';
 
 import { ActiveLink} from "../../controls";
 
+import { fromEvent } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators';
+
 import './services.sass';
 
 export default class Services extends React.Component {
@@ -18,22 +21,23 @@ export default class Services extends React.Component {
 
         this.coverRef = React.createRef();
 
-        this.scrollHandler = () => {
-            const viewportHeight = window.innerHeight;
-            const { top, height } = this.coverRef.current.getBoundingClientRect();
-            const percent = (viewportHeight - top) / (viewportHeight + height);
-            const bgPos = Math.round(-250 + 250 * Math.max(0, Math.min(1, percent)))/10;
+        this.scroll$ = fromEvent(window, 'scroll')
+            .pipe(debounceTime(10), map(() => {
+                const viewportHeight = window.innerHeight;
+                const { top, height } = this.coverRef.current.getBoundingClientRect();
+                const percent = (viewportHeight - top) / (viewportHeight + height);
+                const bgPos = Math.round(-250 + 250 * Math.max(0, Math.min(1, percent)))/10;
 
-            this.coverRef.current.style.backgroundPosition = `50% ${bgPos}vh`;
-        };
+                this.coverRef.current.style.backgroundPosition = `50% ${bgPos}vh`;
+            }));
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.scrollHandler);
+        this.scroll$.subscribe();
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.scrollHandler);
+        this.scroll$.unsubscribe();
     }
 
     render() {

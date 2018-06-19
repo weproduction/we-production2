@@ -6,32 +6,37 @@ import Image from 'react-retina-image';
 import { ActiveLink, FollowUs, LocalePicker } from "../controls";
 
 import './navigation.sass';
+import { fromEvent } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators'
 
 export default class Navigation extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
 
         this.navbarRef = React.createRef();
-
-        let prevScrollpos = window.pageYOffset;
-
-        this.scrollHandler = () => {
-            const navbar = this.navbarRef.current;
-            if (navbar.classList.contains('is-fixed-top')) {
-                const top = document.documentElement.scrollTop
-                    || document.body.parentNode.scrollTop
-                    || document.body.scrollTop;
-
-                this.props.fixed && navbar.classList.toggle('is-transparent', top < 50);
-            }
-
-            const currentScrollPos = window.pageYOffset;
-            this.navbarRef.current.classList.toggle('is-off-screen', prevScrollpos <= currentScrollPos && currentScrollPos > 50);
-            prevScrollpos = currentScrollPos;
-        };
-
         this.navbarMenuRef = React.createRef();
+
+        let prevScrollPos = window.pageYOffset;
+        this.scroll$ = fromEvent(window, 'scroll')
+            .pipe(
+                map(() => {
+                    const currentScrollPos = window.pageYOffset;
+                    this.navbarRef.current.classList.toggle('is-off-screen', prevScrollPos <= currentScrollPos && currentScrollPos > 50);
+                    prevScrollPos = currentScrollPos;
+                }),
+                debounceTime(50),
+                map(() => {
+                    const navbar = this.navbarRef.current;
+                    if (this.props.fixed && navbar.classList.contains('is-fixed-top')) {
+                        const top = document.documentElement.scrollTop
+                            || document.body.parentNode.scrollTop
+                            || document.body.scrollTop;
+
+                        navbar.classList.toggle('is-transparent', top < 50);
+                    }
+                })
+            );
     }
 
     burgerClickHandler() {
@@ -43,11 +48,11 @@ export default class Navigation extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.scrollHandler);
+        this.scroll$.subscribe();
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.scrollHandler);
+        this.scroll$.unsubscribe();
     }
 
     isActive(link) {
