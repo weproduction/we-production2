@@ -53,8 +53,7 @@ export default class Navigation extends React.Component {
     isActive(link) {
         return (link.to === '/'
             ? window.location.pathname === '/'
-            : window.location.pathname.startsWith(link.to))
-                ? 'is-active' : '';
+            : window.location.pathname.startsWith(link.to));
     }
 
     goTop() {
@@ -103,7 +102,7 @@ export default class Navigation extends React.Component {
                             <ActiveLink
                                 key={link.to}
                                 to={link.to}
-                                className={`navbar-item ${this.isActive(link)}`}
+                                className={`navbar-item ${this.isActive(link) ? 'is-active' : ''}`}
                             >
                                 <Translate id={link.text} />
                             </ActiveLink>
