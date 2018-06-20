@@ -11,10 +11,7 @@ export class Localized extends React.Component {
     render() {
         return (
             <Translate>
-                {({ activeLanguage }) => {
-                    const lang = activeLanguage ? activeLanguage.code : 'en';
-                    return this.props[lang];
-                }}
+                {({ activeLanguage }) => this.props[(activeLanguage ? activeLanguage.code : 'en')]}
             </Translate>
         )
     }
