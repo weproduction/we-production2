@@ -6,6 +6,9 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './contacts.sass'
 import {withContacts} from '../../context';
 
+import { Subject, interval, merge } from 'rxjs';
+import { map, switchMap, mapTo } from 'rxjs/operators'
+
 @withContacts
 export default class Contacts extends React.Component {
 
@@ -16,18 +19,10 @@ export default class Contacts extends React.Component {
 
     contactsRef = React.createRef();
     galleryRef = React.createRef();
-
-    goTo(index) {
-        this.setState({
-            current: index % this.state.photos.length
-        });
-
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => this.goTo(this.state.current + 1), 15000);
-    }
+    buttonSubject = new Subject();
 
     componentWillMount() {
-        const { gallery } = this.props.contacts;
+        const {gallery} = this.props.contacts;
 
         this.setState({
             photos: gallery,
@@ -44,11 +39,20 @@ export default class Contacts extends React.Component {
     }
 
     componentDidMount() {
-        this.goTo(this.state.current);
+        this.gallery$ = merge(
+                this.buttonSubject,
+                this.buttonSubject.pipe(switchMap(() => interval(5000)), mapTo(-1)),
+            )
+            .pipe(
+                map(x => x === -1 ? (this.state.current + 1) % this.state.photos.length : x)
+            )
+            .subscribe(current => this.setState({ current }));
+
+        this.buttonSubject.next(this.state.current);
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
+        this.gallery$.unsubscribe();
     }
 
     showGallery() {
@@ -124,7 +128,7 @@ export default class Contacts extends React.Component {
                         <ul className="nav-dots">
                             {this.state.photos.map((photo, index) => (
                                 <li key={index} className={"nav-dot " + (index === this.state.current ? 'is-active' : '')}
-                                    onClick={() => this.goTo(index)}
+                                    onClick={() => this.buttonSubject.next(index)}
                                 />
                             ))}
                         </ul>

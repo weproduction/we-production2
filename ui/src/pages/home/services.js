@@ -31,8 +31,6 @@ export default class Services extends React.Component {
                 })
             )
             .subscribe();
-
-        console.log(this.scroll$);
     }
 
     componentWillUnmount() {
