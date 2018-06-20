@@ -4,8 +4,8 @@ import { Translate } from 'react-localize-redux';
 
 export class Localized extends React.Component {
     static propTypes = {
-        en: PropTypes.string.required,
-        uk: PropTypes.string.required
+        en: PropTypes.string.isRequired,
+        uk: PropTypes.string.isRequired
     };
 
     render() {
