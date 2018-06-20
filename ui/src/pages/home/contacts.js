@@ -6,7 +6,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './contacts.sass'
 import {withContacts} from '../../context';
 
-import { Subject, interval, merge } from 'rxjs';
+import { Subject, interval, merge, of } from 'rxjs';
 import { map, switchMap, mapTo } from 'rxjs/operators'
 
 @withContacts
@@ -41,14 +41,15 @@ export default class Contacts extends React.Component {
     componentDidMount() {
         this.gallery$ = merge(
                 this.buttonSubject,
-                this.buttonSubject.pipe(switchMap(() => interval(5000)), mapTo(-1)),
+                merge(
+                    of(this.state.current),
+                    this.buttonSubject
+                ).pipe(switchMap(() => interval(5000)), mapTo(-1)),
             )
             .pipe(
                 map(x => x === -1 ? (this.state.current + 1) % this.state.photos.length : x)
             )
             .subscribe(current => this.setState({ current }));
-
-        this.buttonSubject.next(this.state.current);
     }
 
     componentWillUnmount() {
