@@ -7,6 +7,7 @@ import reveal from "scrollreveal";
 
 import './crew.sass';
 import {withCrew} from "../../context";
+import {Localized} from "../../controls";
 
 const sr = reveal();
 
@@ -52,29 +53,23 @@ export default class Crew extends React.Component {
                                             <Image src={"/crew/" + encodeURI(person.photo)} />
                                         </figure>
                                         <div className="crew-member-details is-inline-block-touch">
-                                            <Translate>
-                                                {({ activeLanguage}) => {
-                                                    const lang = activeLanguage ? activeLanguage.code : 'en';
-                                                    const name = person[`name_${lang}`];
-                                                    const position = person[`position_${lang}`];
-
-                                                    return (
-                                                        <div className="block">
-                                                            <p className="title is-6 is-marginless">{name}</p>
-                                                            <p className="subtitle is-7 is-marginless has-font-caveat">{position}</p>
-                                                        </div>
-                                                    )
-                                                }}
-                                            </Translate>
+                                            <div className="block">
+                                                <p className="title is-6 is-marginless">
+                                                    <Localized en={person.name_en} uk={person.name_uk}/>
+                                                </p>
+                                                <p className="subtitle is-7 is-marginless has-font-caveat">
+                                                    <Localized en={person.position_en} uk={person.position_uk}/>
+                                                </p>
+                                            </div>
                                             <div className="block is-hidden-mobile">
                                                 <a href="javascript:" className="has-text-white is-size-7">
                                                     <Icon>
-                                                        <i className="fab fa-facebook-f"></i>
+                                                        <i className="fab fa-facebook-f"/>
                                                     </Icon>
                                                 </a>
                                                 <a href="javascript:" className="has-text-white is-size-7">
                                                     <Icon>
-                                                        <i className="fab fa-twitter"></i>
+                                                        <i className="fab fa-twitter"/>
                                                     </Icon>
                                                 </a>
                                             </div>
