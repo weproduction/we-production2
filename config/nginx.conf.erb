@@ -49,6 +49,16 @@ http {
         proxy_redirect off;
         proxy_buffering off;
 
+        ## gzip config
+        gzip on;
+        gzip_min_length 1000;
+        gzip_comp_level 5;
+        gzip_proxied any;
+        gzip_vary on;
+        gzip_types text/plain
+                   text/css
+                   text/javascript;
+
         # API
         location /api/ {
             proxy_pass http://api/;
