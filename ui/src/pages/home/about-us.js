@@ -3,22 +3,13 @@ import React from 'react';
 import Image from 'react-retina-image';
 import { Translate } from "react-localize-redux";
 
-import { VideoPreview, ActiveLink } from "../../controls";
-
-import reveal from 'scrollreveal';
-
-const sr = reveal();
+import { VideoPreview, ActiveLink, Reveal } from "../../controls";
 
 export default class AboutUs extends React.Component {
 
     state = {
         categories: ['promotion', 'corporate', 'social', 'sport', 'music', 'concerts']
     };
-
-    componentDidMount() {
-        const nodes = this.categoryRefs.map(x => x.current);
-        sr.reveal(nodes, { duration: 1000, mobile: false }, 50);
-    }
 
     render() {
         const { categories } = this.state;
@@ -40,18 +31,20 @@ export default class AboutUs extends React.Component {
                             </div>
                             <div className="block">
                                 <div className="columns is-variable is-0 is-multiline is-fullwidth is-mobile">
-                                    {categories.map((category, index) => (
-                                        <div key={category} ref={this.categoryRefs[index]} className="column is-half-mobile is-one-third-tablet has-text-centered" style={{padding: '3rem 1rem'}}>
-                                            <ActiveLink to={`/videos/${category}`} className="block has-text-dark home-video-category-reveal">
-                                                <figure className="image is-48x48 is-inline-block">
-                                                    <Image src={`/categories/video-${encodeURI(category)}.png`}/>
-                                                </figure>
-                                                <p className="title is-4">
-                                                    <Translate id={`video.categories.${category}`}/>
-                                                </p>
-                                            </ActiveLink>
-                                        </div>
-                                    ))}
+                                    <Reveal refs={this.categoryRefs} config={{ duration: 1000 }} delay={50}>
+                                        {categories.map((category, index) => (
+                                            <div key={category} ref={this.categoryRefs[index]} className="column is-half-mobile is-one-third-tablet has-text-centered" style={{padding: '3rem 1rem'}}>
+                                                <ActiveLink to={`/videos/${category}`} className="block has-text-dark home-video-category-reveal">
+                                                    <figure className="image is-48x48 is-inline-block">
+                                                        <Image src={`/categories/video-${encodeURI(category)}.png`}/>
+                                                    </figure>
+                                                    <p className="title is-4">
+                                                        <Translate id={`video.categories.${category}`}/>
+                                                    </p>
+                                                </ActiveLink>
+                                            </div>
+                                        ))}
+                                    </Reveal>
                                 </div>
                             </div>
                         </div>
