@@ -8,10 +8,15 @@ export class Localized extends React.Component {
         uk: PropTypes.string.isRequired
     };
 
+    valueFor(lang) {
+        const localized = this.props[(lang ? lang.code : 'en')];
+        return localized === undefined ? 'Missing translation' : localized;
+    }
+
     render() {
         return (
             <Translate>
-                {({ activeLanguage }) => this.props[(activeLanguage ? activeLanguage.code : 'en')]}
+                {({ activeLanguage }) => this.valueFor(activeLanguage)}
             </Translate>
         )
     }

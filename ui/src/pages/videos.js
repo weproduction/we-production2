@@ -62,27 +62,25 @@ export default class Videos extends React.Component {
                         <Translate id={`video.categories.${active_category}`}/>
                     </h2>
                     <div className="tabs is-small">
-                        <Translate>
-                            {({activeLanguage}) => {
-                                const lang = activeLanguage ? activeLanguage.code : 'en';
-                                const tags = lang === 'uk' ? tags_uk : tags_en;
+                        <ul>
+                            <li className={tag === '' ? 'is-active' : ''}>
+                                <ActiveLink to={`/videos/${category}`}>
+                                    <Translate id="buttons.all"/>
+                                </ActiveLink>
+                            </li>
+                            <Translate>
+                                {({activeLanguage}) => {
+                                    const lang = activeLanguage ? activeLanguage.code : 'en';
+                                    const tags = lang === 'uk' ? tags_uk : tags_en;
 
-                                return (
-                                    <ul>
-                                        <li className={tag === '' ? 'is-active' : ''}>
-                                            <ActiveLink to={`/videos/${category}`}>
-                                                <Translate id="buttons.all"/>
-                                            </ActiveLink>
+                                    return tags.map((to, index) => (
+                                        <li className={to === tag ? 'is-active' : ''} key={index}>
+                                            <ActiveLink to={`/videos/${category}/${to}`}>{to}</ActiveLink>
                                         </li>
-                                        {tags.map((to, index) => (
-                                            <li className={to === tag ? 'is-active' : ''} key={index}>
-                                                <ActiveLink to={`/videos/${category}/${to}`}>{to}</ActiveLink>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )
-                            }}
-                        </Translate>
+                                    ))
+                                }}
+                            </Translate>
+                        </ul>
                     </div>
                 </div>
                 <div className="block">
