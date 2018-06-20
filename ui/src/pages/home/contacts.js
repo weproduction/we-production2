@@ -120,7 +120,7 @@ export default class Contacts extends React.Component {
                                     <CSSTransition
                                         key={this.state.current}
                                         classNames="gallery"
-                                        timeout={1400}>
+                                        timeout={1600}>
                                         <img src={`/gallery/${photo}`} alt=""/>
                                     </CSSTransition>
                                 </TransitionGroup>
