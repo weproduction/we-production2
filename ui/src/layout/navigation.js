@@ -25,7 +25,7 @@ export default class Navigation extends React.Component {
                     this.navbarRef.current.classList.toggle('is-off-screen', prevScrollPos <= currentScrollPos && currentScrollPos > 50);
                     prevScrollPos = currentScrollPos;
                 }),
-                debounceTime(50),
+                debounceTime(10),
                 map(() => {
                     const navbar = this.navbarRef.current;
                     if (this.props.fixed && navbar.classList.contains('is-fixed-top')) {
@@ -93,12 +93,12 @@ export default class Navigation extends React.Component {
             <nav className={`navbar is-fixed-top ${fixedClass}`} ref={this.navbarRef}>
                 <div className="navbar-brand">
                     <ActiveLink to="/" className="navbar-item" onNavigate={() => this.goTop()}>
-                        <Image src="/img/logo.png" alt="We Production"/>
+                        <img src="/img/logo@2x.png" alt="We Production"/>
                     </ActiveLink>
                     <div className="navbar-burger burger" onClick={() => this.burgerClickHandler()}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span/>
+                        <span/>
+                        <span/>
                     </div>
                 </div>
                 <div className="navbar-menu" ref={this.navbarMenuRef} onClick={() => this.menuItemClickHandler()}>
