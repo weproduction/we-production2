@@ -20,14 +20,16 @@ export default class Services extends React.Component {
 
     componentDidMount() {
         this.scroll$ = fromEvent(window, 'scroll')
-            .pipe(debounceTime(10), map(() => {
-                const viewportHeight = window.innerHeight;
-                const { top, height } = this.coverRef.current.getBoundingClientRect();
-                const percent = (viewportHeight - top) / (viewportHeight + height);
-                const bgPos = Math.round(-250 + 250 * Math.max(0, Math.min(1, percent)))/10;
+            .pipe(
+                map(() => {
+                    const viewportHeight = window.innerHeight;
+                    const { top, height } = this.coverRef.current.getBoundingClientRect();
+                    const percent = (viewportHeight - top) / (viewportHeight + height);
+                    const bgPos = Math.round(-250 + 250 * Math.max(0, Math.min(1, percent)))/10;
 
-                this.coverRef.current.style.backgroundPosition = `50% ${bgPos}vh`;
-            }))
+                    this.coverRef.current.style.backgroundPosition = `50% ${bgPos}vh`;
+                })
+            )
             .subscribe();
 
         console.log(this.scroll$);
