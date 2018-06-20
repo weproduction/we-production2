@@ -35,9 +35,11 @@ http {
     }
 
 	server {
-		listen <%= ENV["PORT"] %>;
-		server_name _;
-		keepalive_timeout 5;
+        listen <%= ENV["PORT"] %>;
+        server_name _;
+        keepalive_timeout 5;
+
+        client_max_body_size 75M;
 
         # Proxy Headers
         proxy_set_header X-Real-IP $remote_addr;
@@ -48,13 +50,13 @@ http {
         # Proxy Settings
         proxy_redirect off;
         proxy_buffering off;
-        proxy_http_version 1.1;
 
         ## gzip config
         gzip on;
         gzip_min_length 1000;
-        gzip_comp_level 5;
+        gzip_comp_level 4;
         gzip_proxied any;
+        gzip_http_version 1.1;
         gzip_vary on;
         gzip_types
             text/css
@@ -62,6 +64,7 @@ http {
             text/xml
             text/plain
             text/x-component
+            text/html
             application/javascript
             application/x-javascript
             application/json
@@ -82,7 +85,7 @@ http {
             expires 1M;
             access_log off;
             add_header Cache-Control "public";
-
+            proxy_http_version 1.1;
 
             proxy_pass http://ui;
         }
