@@ -5,42 +5,43 @@ import { Translate } from 'react-localize-redux';
 
 import { Vimeo } from '../../controls';
 
+import { fromEvent } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators';
+
 import './showreel.sass';
 
 export default class Showreel extends React.Component {
 
-    constructor() {
-        super();
-        this.playerRef = React.createRef();
-        this.playPauseRef = React.createRef();
-        this.sectionRef = React.createRef();
 
-        this.state = {
-            playing: false
-        };
+    playerRef = React.createRef();
+    playPauseRef = React.createRef();
+    sectionRef = React.createRef();
 
-        this.scrollHandler = () => {
-            if (this.state.playing) {
-                const top = document.documentElement.scrollTop
-                    || document.body.parentNode.scrollTop
-                    || document.body.scrollTop;
-
-                const {height} = this.sectionRef.current.getBoundingClientRect();
-
-                if (top > height * .9) {
-                    this.restart();
-                }
-            }
-        };
-    }
+    state = {
+        playing: false
+    };
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.scrollHandler);
+        this.scroll$.unsubscribe();
     }
 
     componentDidMount() {
         window.showreel = this.playerRef.current.player;
-        window.addEventListener('scroll', this.scrollHandler);
+        this.scroll$ = fromEvent(window, 'scroll')
+            .pipe(
+                debounceTime(100),
+                map(() => {
+                    const top = document.documentElement.scrollTop
+                        || document.body.parentNode.scrollTop
+                        || document.body.scrollTop;
+
+                    const {height} = this.sectionRef.current.getBoundingClientRect();
+
+                    if (top > height * .9) {
+                        this.restart();
+                    }
+                }))
+            .subscribe();
     }
 
     componentDidUpdate() {
@@ -70,7 +71,7 @@ export default class Showreel extends React.Component {
             this.playPauseRef.current.classList.add('is-mouse-active');
             clearTimeout(this.mouse_timer);
             this.mouse_timer = setTimeout(() => this.hidePauseButton(), 3000);
-        };
+        }
     }
 
     hidePauseButton() {

@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { Translate } from 'react-localize-redux';
-import Image from 'react-retina-image';
 
-import { ActiveLink, FollowUs, LocalePicker } from "../controls";
+import { ActiveLink, FollowUs, LocalePicker } from '../controls';
 
 import './navigation.sass';
 import { fromEvent } from 'rxjs';
@@ -11,12 +10,39 @@ import { map, debounceTime } from 'rxjs/operators'
 
 export default class Navigation extends React.Component {
 
-    constructor() {
-        super();
+    state = {
+        links: [
+            {
+                to: '/',
+                text: 'home.link'
+            },
+            {
+                to: '/videos',
+                text: 'video.link'
+            },
+            {
+                to: '/services',
+                text: 'services.link'
+            },
+            {
+                to: '/contact',
+                text: 'contacts.link'
+            }
+        ]
+    };
 
-        this.navbarRef = React.createRef();
-        this.navbarMenuRef = React.createRef();
+    navbarRef = React.createRef();
+    navbarMenuRef = React.createRef();
 
+    burgerClickHandler() {
+        this.navbarMenuRef.current.classList.toggle('is-active');
+    }
+
+    menuItemClickHandler() {
+        this.navbarMenuRef.current.classList.remove('is-active');
+    }
+
+    componentDidMount() {
         let prevScrollPos = window.pageYOffset;
         this.scroll$ = fromEvent(window, 'scroll')
             .pipe(
@@ -36,19 +62,8 @@ export default class Navigation extends React.Component {
                         navbar.classList.toggle('is-transparent', top < 50);
                     }
                 })
-            );
-    }
-
-    burgerClickHandler() {
-        this.navbarMenuRef.current.classList.toggle('is-active');
-    }
-
-    menuItemClickHandler() {
-        this.navbarMenuRef.current.classList.remove('is-active');
-    }
-
-    componentDidMount() {
-        this.scroll$.subscribe();
+            )
+            .subscribe();
     }
 
     componentWillUnmount() {
@@ -70,24 +85,7 @@ export default class Navigation extends React.Component {
     render() {
         const fixedClass = this.props.fixed ? 'is-transparent' : '';
 
-        const links = [
-            {
-                to: '/',
-                text: 'home.link'
-            },
-            {
-                to: '/videos',
-                text: 'video.link'
-            },
-            {
-                to: '/services',
-                text: 'services.link'
-            },
-            {
-                to: '/contact',
-                text: 'contacts.link'
-            }
-        ];
+        const { links } = this.state;
 
         return (
             <nav className={`navbar is-fixed-top ${fixedClass}`} ref={this.navbarRef}>

@@ -16,11 +16,9 @@ export default class Services extends React.Component {
         services: ['project', 'crew', 'drone', 'multicam']
     };
 
-    constructor(){
-        super();
+    coverRef = React.createRef();
 
-        this.coverRef = React.createRef();
-
+    componentDidMount() {
         this.scroll$ = fromEvent(window, 'scroll')
             .pipe(debounceTime(10), map(() => {
                 const viewportHeight = window.innerHeight;
@@ -29,11 +27,10 @@ export default class Services extends React.Component {
                 const bgPos = Math.round(-250 + 250 * Math.max(0, Math.min(1, percent)))/10;
 
                 this.coverRef.current.style.backgroundPosition = `50% ${bgPos}vh`;
-            }));
-    }
+            }))
+            .subscribe();
 
-    componentDidMount() {
-        this.scroll$.subscribe();
+        console.log(this.scroll$);
     }
 
     componentWillUnmount() {

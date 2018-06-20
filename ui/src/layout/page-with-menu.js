@@ -4,27 +4,7 @@ import './page-with-menu.sass'
 
 export default class PageWithMenu extends React.Component {
 
-    constructor() {
-        super();
-
-        this.menuRef = React.createRef();
-
-        let prevScrollpos = window.pageYOffset;
-
-        this.scrollHandler = () => {
-            const currentScrollPos = window.pageYOffset;
-            //this.menuRef.current.classList.toggle('is-off-screen', prevScrollpos <= currentScrollPos);
-            prevScrollpos = currentScrollPos;
-        };
-    }
-
-    componentDidMount() {
-        window.addEventListener('scroll', this.scrollHandler);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.scrollHandler);
-    }
+    menuRef = React.createRef();
 
     render() {
         const { menu, children, className, chapter } = this.props;

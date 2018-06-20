@@ -27,7 +27,7 @@ export default class Services extends React.Component {
         const { service = services[0] } = params;
 
         const menuComponents = services.map(to => (
-            <li>
+            <li key={to}>
                 <ActiveLink to={`/services/${to}`}
                             className={to === service ? 'is-active' : ''}>
                     <Translate id={`services.${to}.header`}/>

@@ -18,11 +18,8 @@ const steps = [
 ];
 
 export default class Production extends React.Component {
-    constructor() {
-        super();
 
-        this.stepRefs = steps.map(() => React.createRef());
-    }
+    stepRefs = steps.map(() => React.createRef());
 
     componentDidMount() {
         const nodes = this.stepRefs.map(x => x.current);

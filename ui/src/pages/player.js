@@ -12,11 +12,8 @@ import { connect } from "react-redux";
     }
 )
 export default class Player extends React.Component {
-    constructor() {
-        super();
 
-        this.playerRef = React.createRef();
-    }
+    playerRef = React.createRef();
 
     close() {
         this.props.dispatch({

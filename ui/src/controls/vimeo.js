@@ -18,11 +18,8 @@ const eventNames = {
 };
 
 export class Vimeo extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.containerRef = React.createRef();
-    }
+    containerRef = React.createRef();
 
     componentDidMount() {
         this.createPlayer();

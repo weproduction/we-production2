@@ -8,17 +8,14 @@ import {withContacts} from '../../context';
 
 @withContacts
 export default class Contacts extends React.Component {
-    constructor() {
-        super();
 
-        this.state = {
-            photos: [],
-            current: 0
-        };
+    state = {
+        photos: [],
+        current: 0
+    };
 
-        this.contactsRef = React.createRef();
-        this.galleryRef = React.createRef();
-    }
+    contactsRef = React.createRef();
+    galleryRef = React.createRef();
 
     goTo(index) {
         this.setState({
