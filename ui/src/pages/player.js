@@ -27,13 +27,30 @@ export default class Player extends React.Component {
         }, 200);
     }
 
+    componentDidUpdate() {
+        const current = parseInt(window.location.search.substr(1), 10);
+        const { video, active, paused } = this.props.player;
+
+        if (active && !paused) {
+
+            const path = window.location.pathname + '?' + video;
+
+            console.log('HEER!!!', video, active, paused, path, current);
+            if (current > 0 && current != this.props.video) {
+                window.history.replaceState(null, document.title, path)
+            } else {
+                window.history.pushState(null, document.title, path)
+            }
+        }
+    }
+
     render() {
         const { video, active, paused } = this.props.player;
 
         if (active) {
             return (
                 <div className="modal is-active">
-                    <div className="modal-background"></div>
+                    <div className="modal-background"/>
                     <div className="modal-content">
                         <div style={{width: '90vw', height: '50.625vw', position: 'relative'}}>
                             <Vimeo
@@ -46,13 +63,13 @@ export default class Player extends React.Component {
                             />
                         </div>
                     </div>
-                    <button className="modal-close is-large" aria-label="close" onClick={() => this.close()}></button>
+                    <button className="modal-close is-large" aria-label="close" onClick={() => this.close()}/>
                 </div>
             )
         }
 
         return (
-            <div className="modal is-hidden"></div>
+            <div className="modal is-hidden"/>
         )
     }
 }

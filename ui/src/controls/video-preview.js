@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Icon } from 'react-bulma-components';
 
@@ -10,11 +11,26 @@ import { Localized } from './localized';
 
 @connect()
 export class VideoPreview extends React.Component {
-    play(video) {
+
+    static propTypes = {
+        video: PropTypes.any.isRequired,
+        autoStart: PropTypes.bool
+    };
+
+    play() {
         this.props.dispatch({
             type: 'VIDEO_PLAY',
-            payload: video
+            payload: this.props.video
         })
+    }
+
+    componentDidMount() {
+        const current = window.location.search.substr(1);
+
+        console.log('HERE', current, this.props.video);
+        if (this.props.autoStart || (current == this.props.video)) {
+            this.play()
+        }
     }
 
     render() {
@@ -38,7 +54,7 @@ export class VideoPreview extends React.Component {
                     <div className="video-duration">
                         {min}:{sec > 9 ? sec : `0${sec}`}
                     </div>
-                    <a className="video-play" onClick={() => this.play(video)}>
+                    <a className="video-play" onClick={() => this.play()}>
                         <Icon className="is-large">
                             <i className="fas fa-3x fa-play"/>
                         </Icon>

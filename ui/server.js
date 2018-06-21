@@ -26,7 +26,11 @@ SPA_Router.get('*', (req, res) =>
 
 const nonSPA_Router = express.Router({});
 
-nonSPA_Router.get('/videos/:category/:tag/:video', (req,res, next) => {
+nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
+
+    const category = req.params.category || 'featured';
+    const tag = req.params.tag || null;
+    const current_video = require('url').parse(req.url).query;
 
     request('http://localhost:3001/video', (err, r, data) => {
         if (err) {
@@ -34,7 +38,18 @@ nonSPA_Router.get('/videos/:category/:tag/:video', (req,res, next) => {
         }
 
         const videos = JSON.parse(data);
-        const video = videos.filter(v => v.video === req.params.video).pop();
+        if (videos.code !== undefined) {
+            return next();
+        }
+
+        let video = videos
+            .filter(v => ~v.categories.indexOf(category))
+            .filter(v => !tag || ~v.tags_en.indexOf(tag) || ~v.tags_uk.indexOf(tag))
+            .shift();
+
+        if (current_video) {
+            video = videos.filter(v => v.video === current_video).pop();
+        }
 
         if (!video) {
             return next();
