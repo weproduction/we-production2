@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 @connect(
     (state, ownProps = {}) => {
         return {
-            location: state.location
+            localize: state.localize
         }
     }, (dispatch, ownProps) => ({
         navigateTo: (location) => {
@@ -20,11 +20,14 @@ export class ActiveLink extends React.Component {
         tagName: PropTypes.oneOf(['a', 'button']),
         className: PropTypes.string,
         disabled: PropTypes.bool,
-        onNavigate: PropTypes.func
+        onNavigate: PropTypes.func,
+        exact: PropTypes.bool
     };
 
     render() {
-        const {tagName, children, className, disabled, to, onNavigate, navigateTo } = this.props;
+        const {tagName, children, className, disabled, to: href, onNavigate, navigateTo, localize: { languages }, exact } = this.props;
+        const activeLanguage = languages.find(l => l.active);
+        const to = exact ? href : `/${activeLanguage ? activeLanguage.code : 'en'}${href}`;
         const whiteList = {
             className,
             disabled,

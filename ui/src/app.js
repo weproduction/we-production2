@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Route, Switch, Redirect, IndexRoute } from 'react-router-dom';
+import { Translate } from 'react-localize-redux';
 
 import Navigation from './layout/navigation';
 import Footer from './layout/footer';
@@ -39,6 +39,8 @@ class App extends Component {
             defaultLanguage = languages[0].code;
         }
 
+        this.defaultLanguage = defaultLanguage;
+        
         this.props.initialize({
             languages,
             options: { renderToStaticMarkup, defaultLanguage }
@@ -62,13 +64,20 @@ class App extends Component {
                 <CrewProvider>
                     <ClientsProvider>
                         <FeedbackProvider>
-                            <Navigation fixed={~['/', '/welcome'].indexOf(window.location.pathname)}/>
+                            <Navigation fixed={window.location.pathname.endsWith('/welcome')}/>
+                            <Route exact path="/" render={() => <Redirect to={`/${this.defaultLanguage}/welcome`}/>}/>
+                            <Route path="/:locale" component={({match : { params: { locale } }}) => (
+                                <Translate>
+                                    {({setActiveLanguage}) => {
+                                        setActiveLanguage(locale);
+                                    }}
+                                </Translate>
+                            )}/>
                             <Switch>
-                                <Redirect exact from="/" to="/welcome" />
-                                <Route path="/welcome" component={Home} />
-                                <Route path="/videos/:category?/:tag?" component={Videos} />
-                                <Route path="/services/:service?" component={Services} />
-                                <Route path="/contact" component={Contacts} />
+                                <Route path="/:locale/welcome" component={Home} />
+                                <Route path="/:locale/videos/:category?/:tag?" component={Videos} />
+                                <Route path="/:locale/services/:service?" component={Services} />
+                                <Route path="/:locale/contact" component={Contacts} />
                                 <Route component={PageNotFound}/>
                             </Switch>
                             <Footer/>
