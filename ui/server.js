@@ -37,7 +37,7 @@ nonSPA_Router.get('/video', (req,res) => {
     });
 });
 
-nonSPA_Router.get('/article', (req,res) => {
+nonSPA_Router.get('/*', (req,res) => {
     res.render('bot', {
         url: 'http://we-production.herokuapp.com/',
         type: 'article',
