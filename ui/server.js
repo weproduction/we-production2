@@ -29,7 +29,7 @@ SPA_Router.get('*', (req, res) =>
 
 const nonSPA_Router = express.Router({});
 
-nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
+nonSPA_Router.get('/:locale/videos/:category?/:tag?', (req,res, next) => {
 
     const category = req.params.category || 'featured';
     const tag = req.params.tag || null;
