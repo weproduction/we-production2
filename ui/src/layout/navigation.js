@@ -71,9 +71,7 @@ export default class Navigation extends React.Component {
     }
 
     isActive(link) {
-        return (link.to === '/'
-            ? window.location.pathname === '/'
-            : window.location.pathname.startsWith(link.to));
+        return window.location.pathname.substr(3).startsWith(link.to);
     }
 
     goTop() {
