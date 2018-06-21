@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title= title
+        meta(property="og:url"  name="twitter:url" content= url)
+        meta(property="og:title" name="twitter:title" content= title)
+        meta(property="og:description" name="twitter:description" content= description)
+        meta(property="og:image" content= image)
+        meta(property="og:type" content=type)
+        meta(name="twitter:card" content="summary")
+    body
+        h1= title
+        img(src=image alt=title)
+        p= description
