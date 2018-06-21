@@ -29,7 +29,7 @@ nonSPA_Router.get('/video', (req,res) => {
     // TODO: call API to get video details
 
     res.render('bot', {
-        url: 'http://we-production.herokuapp.com/test-video',
+        url: 'http://we-production.herokuapp.com/video',
         type: 'video.other',
         image: 'https://i.vimeocdn.com/video/503244445_1920x1080.jpg?r=padv',
         title: 'Waterdrops by We Production',
@@ -39,7 +39,7 @@ nonSPA_Router.get('/video', (req,res) => {
 
 nonSPA_Router.get('/article', (req,res) => {
     res.render('bot', {
-        url: 'http://we-production.herokuapp.com/',
+        url: 'http://we-production.herokuapp.com/article',
         type: 'article',
         image: 'http://we-production.herokuapp.com/img/logo@4x.jpg',
         title: 'We Production',
@@ -49,7 +49,7 @@ nonSPA_Router.get('/article', (req,res) => {
 
 nonSPA_Router.get('/*', (req,res) => {
     res.render('bot', {
-        url: 'http://we-production.herokuapp.com/',
+        url: 'http://we-production.herokuapp.com' + req.originalUrl,
         type: 'website',
         image: 'http://we-production.herokuapp.com/img/logo@4x.jpg',
         title: 'We Production',
