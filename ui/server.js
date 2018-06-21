@@ -13,7 +13,7 @@ const SPA_Router = express.Router();
 SPA_Router.use((req,res,next) => {
     const ua = req.headers['user-agent'];
 
-    if (!/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua)) {
+    if (/^(facebookexternalhit)|(Twitterbot)|(Pinterest)/gi.test(ua)) {
         next('router');
     } else {
         next();
@@ -37,10 +37,20 @@ nonSPA_Router.get('/video', (req,res) => {
     });
 });
 
-nonSPA_Router.get('/*', (req,res) => {
+nonSPA_Router.get('/article', (req,res) => {
     res.render('bot', {
         url: 'http://we-production.herokuapp.com/',
         type: 'article',
+        image: 'http://we-production.herokuapp.com/img/logo@4x.jpg',
+        title: 'We Production',
+        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
+    });
+});
+
+nonSPA_Router.get('/*', (req,res) => {
+    res.render('bot', {
+        url: 'http://we-production.herokuapp.com/',
+        type: 'website',
         image: 'http://we-production.herokuapp.com/img/logo@4x.jpg',
         title: 'We Production',
         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
