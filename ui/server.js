@@ -4,7 +4,7 @@ const app = express();
 const request = require('request');
 
 const locale_en = require('./src/data/locale.en');
-const locale_uk = require('./src/data/locale.en');
+const locale_uk = require('./src/data/locale.uk');
 
 app.set('view engine', 'jade');
 
