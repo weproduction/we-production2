@@ -3,6 +3,9 @@ const path = require('path');
 const app = express();
 const request = require('request');
 
+const locale_en = require('./src/data/locale.en');
+const locale_uk = require('./src/data/locale.en');
+
 app.set('view engine', 'jade');
 
 app.use(express.static(path.join(__dirname, 'build'), {
@@ -55,23 +58,29 @@ nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
             return next();
         }
 
+        const host = req.headers.host;
+        console.log(host);
+
         res.render('bot', {
-            url: 'http://we-production.herokuapp.com' + req.originalUrl,
+            url: `${host}${req.originalUrl}`,
             type: 'video.other',
             image: video.preview[1080] || video.preview[720],
-            title: `${video.title_en} by We Production`,
+            title: `${video.title_en} ${locale_en.by} ${locale_en.title}`,
             description: video.description_en,
         });
     })
 });
 
 nonSPA_Router.get('/*', (req,res) => {
+    const host = req.headers.host;
+    console.log(host);
+
     res.render('bot', {
-        url: 'http://we-production.herokuapp.com' + req.originalUrl,
+        url: `${host}${req.originalUrl}`,
         type: 'website',
-        image: 'http://we-production.herokuapp.com/img/fb-preview.jpg',
-        title: 'We Production',
-        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
+        image: `${host}/img/fb-preview.jpg`,
+        title: locale_en.title,
+        description: locale_en.description,
     });
 });
 

@@ -23,7 +23,7 @@ export default class AboutUs extends React.Component {
                         <div className="column">
                             <div className="block">
                                 <h2 className="title is-1 is-spaced">
-                                    <Translate id="headers.we-production"/>
+                                    <Translate id="title"/>
                                 </h2>
                                 <p className="content is-size-6">
                                     <Translate id="home.about-us"/>

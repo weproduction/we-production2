@@ -1,8 +1,8 @@
 {
+  "title": "We Production Studio",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+  "by": "by",
   "page-not-found": "Page not found",
-  "headers": {
-    "we-production": "We Production Studio"
-  },
   "buttons": {
     "details": "Details",
     "back-to-home": "Back",
