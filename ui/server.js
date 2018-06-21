@@ -76,7 +76,7 @@ nonSPA_Router.get('/*', (req,res) => {
     res.render('bot', {
         url: `${protocol}://${host}${req.originalUrl}`,
         type: 'website',
-        image: `${protocol}//${host}/img/fb-preview.jpg`,
+        image: `${protocol}://${host}/img/fb-preview.jpg`,
         title: locale_en.title,
         description: locale_en.description,
     });
