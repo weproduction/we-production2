@@ -59,7 +59,7 @@ nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
         }
 
         const host = req.headers.host;
-        const protocol = req.headers.protocol || 'http';
+        const protocol = req.header('X-Forwarded-Proto') || 'http';
         res.render('bot', {
             url: `${protocol}://${host}${req.originalUrl}`,
             type: 'video.other',
@@ -72,7 +72,7 @@ nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
 
 nonSPA_Router.get('/*', (req,res) => {
     const host = req.headers.host;
-    const protocol = req.headers.protocol || 'http';
+    const protocol = req.header('X-Forwarded-Proto') || 'http';
     res.render('bot', {
         url: `${protocol}://${host}${req.originalUrl}`,
         type: 'website',
