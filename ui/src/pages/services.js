@@ -26,27 +26,28 @@ export default class Services extends React.Component {
         const { params = {} } = this.props.match;
         const { service = services[0] } = params;
 
-        const menuComponents = services.map(to => (
-            <li key={to}>
-                <ActiveLink to={`/services/${to}`}
-                            className={to === service ? 'is-active' : ''}>
-                    <Translate id={`services.${to}.header`}/>
-                </ActiveLink>
-            </li>
-        ));
-
-        const pageComponent = {
-            project: <Project/>,
-            crew: <Crew/>,
-            drone: <Drone/>,
-            multicam: <Multicam/>
-        }[service];
-
         return (
-            <PageWithMenu menu={menuComponents} chapter={<Translate id="services.link"/>} className={`service-bg ${service}-bg`}>
+            <PageWithMenu menu={services.map(to => (
+                                <li key={to}>
+                                    <ActiveLink to={`/services/${to}`}
+                                                className={to === service ? 'is-active' : ''}
+                                                onNavigate={() => window.scrollTo(0, 0)}
+                                    >
+                                        <Translate id={`services.${to}.header`}/>
+                                    </ActiveLink>
+                                </li>
+                            ))}
+                          chapter={<Translate id="services.link"/>}
+                          className={`service-bg ${service}-bg`}
+            >
                 <div className="columns">
                     <div className="column is-three-quarters-desktop is-full-touch">
-                        {pageComponent}
+                        {{
+                            project: <Project/>,
+                            crew: <Crew/>,
+                            drone: <Drone/>,
+                            multicam: <Multicam/>
+                        }[service]}
                     </div>
                 </div>
             </PageWithMenu>

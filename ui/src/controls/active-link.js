@@ -24,7 +24,7 @@ export class ActiveLink extends React.Component {
     };
 
     render() {
-        const {tagName, children, className, disabled, to} = this.props;
+        const {tagName, children, className, disabled, to, onNavigate, navigateTo } = this.props;
         const whiteList = {
             className,
             disabled,
@@ -34,36 +34,19 @@ export class ActiveLink extends React.Component {
         const navigate = e => {
             e.preventDefault();
 
-            if (typeof this.props.onNavigate === 'function'){
-                if (this.props.onNavigate(e) === false) {
-                    return ;
-                }
+            if (typeof onNavigate === 'function' && onNavigate(e) === false) {
+                return;
             }
 
-            let target = e.target;
-            while (target && target.tagName !== 'A') {
-                target = target.parentNode;
-            }
-
-            if (target) {
-                this.props.navigateTo(target.getAttribute('to'));
-            }
+            navigateTo(to);
         };
 
         switch (tagName) {
             case 'button':
-                return (
-                    <button {...whiteList} onClick={navigate}>
-                        {children}
-                    </button>
-                );
+                return <button {...whiteList} onClick={navigate}>{children}</button>;
 
             default:
-                return (
-                    <a {...whiteList} onClick={navigate} href={to}>
-                        {children}
-                    </a>
-                );
+                return <a {...whiteList} onClick={navigate} href={to}>{children}</a>;
 
         }
     }

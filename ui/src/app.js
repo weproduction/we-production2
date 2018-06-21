@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Navigation from './layout/navigation';
 import Footer from './layout/footer';
@@ -53,9 +53,10 @@ class App extends Component {
                 <CrewProvider>
                     <ClientsProvider>
                         <FeedbackProvider>
-                            <Navigation fixed={window.location.pathname === '/'}/>
+                            <Navigation fixed={~['/', '/welcome'].indexOf(window.location.pathname)}/>
                             <Switch>
-                                <Route exact path="/" component={Home} />
+                                <Redirect exact from="/" to="/welcome" />
+                                <Route path="/welcome" component={Home} />
                                 <Route path="/videos/:category?/:tag?" component={Videos} />
                                 <Route path="/services/:service?" component={Services} />
                                 <Route path="/contact" component={Contacts} />

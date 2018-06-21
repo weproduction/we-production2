@@ -13,7 +13,7 @@ export default class Navigation extends React.Component {
     state = {
         links: [
             {
-                to: '/',
+                to: '/welcome',
                 text: 'home.link'
             },
             {

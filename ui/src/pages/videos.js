@@ -52,7 +52,9 @@ export default class Videos extends React.Component {
             <PageWithMenu menu={categories.map(to => (
                 <li key={to}>
                     <ActiveLink to={`/videos/${to}`}
-                                className={to === category ? 'is-active' : ''}>
+                                className={to === category ? 'is-active' : ''}
+                                onNavigate={() => window.scrollTo(0,0)}
+                    >
                         <Translate id={`video.categories.${to}`}/>
                     </ActiveLink>
                 </li>
