@@ -59,8 +59,9 @@ nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
         }
 
         const host = req.headers.host;
+        const protocol = req.headers.protocol || 'http';
         res.render('bot', {
-            url: `http://${host}${req.originalUrl}`,
+            url: `${protocol}://${host}${req.originalUrl}`,
             type: 'video.other',
             image: video.preview[1080] || video.preview[720],
             title: `${video.title_en} ${locale_en.by} ${locale_en.title}`,
@@ -71,10 +72,11 @@ nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
 
 nonSPA_Router.get('/*', (req,res) => {
     const host = req.headers.host;
+    const protocol = req.headers.protocol || 'http';
     res.render('bot', {
-        url: `http://${host}${req.originalUrl}`,
+        url: `${protocol}://${host}${req.originalUrl}`,
         type: 'website',
-        image: `http//${host}/img/fb-preview.jpg`,
+        image: `${protocol}//${host}/img/fb-preview.jpg`,
         title: locale_en.title,
         description: locale_en.description,
     });
