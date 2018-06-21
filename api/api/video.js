@@ -2,6 +2,8 @@
 
 const  Vimeo = require('vimeo').Vimeo;
 
+require('dotenv').config({path: '.env.local'});
+
 const CLIENT_ID = process.env.VIMEO_CLIENT_ID;
 const CLIENT_SECRET = process.env.VIMEO_CLIENT_SECRET;
 const ACCESS_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
