@@ -2,6 +2,7 @@ import React from 'react';
 import { Icon } from 'react-bulma-components';
 import { Translate } from 'react-localize-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Localized } from "../../controls";
 
 import './contacts.sass'
 import {withContacts} from '../../context';
@@ -90,11 +91,7 @@ export default class Contacts extends React.Component {
                             <p className="content is-size-6">
                                 <a href={`mailto:${email}`} className="has-text-dark">{email}</a>
                                 <br/>
-                                <Translate>
-                                    {({activeLanguage}) => (
-                                        <span>{activeLanguage && activeLanguage.code === 'uk' ? address_uk : address_en}</span>
-                                    )}
-                                </Translate>
+                                <Localized en={address_en} uk={address_uk}/>
                                 <br/>
                                 <a href={`tel:${phone}`} className="has-text-dark">{phone}</a>
                             </p>
@@ -104,7 +101,7 @@ export default class Contacts extends React.Component {
                                 &nbsp;
                                 &nbsp;
                                 <Icon>
-                                    <i className="fas fa-phone"></i>
+                                    <i className="fas fa-phone"/>
                                 </Icon>
                             </a>
                         </div>

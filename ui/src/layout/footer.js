@@ -3,7 +3,7 @@ import Image from 'react-retina-image';
 import { Icon } from 'react-bulma-components';
 import { Translate } from 'react-localize-redux';
 
-import { FollowUs } from '../controls';
+import { FollowUs, Localized } from '../controls';
 
 import { withContacts } from '../context';
 
@@ -59,11 +59,7 @@ export default class Footer extends React.Component {
                             <p className="content is-size-7">
                                 <a href={`mailto:${email}`} className="has-text-light">{email}</a>
                                 <br/>
-                                <Translate>
-                                    {({activeLanguage}) => (
-                                        <span>{activeLanguage && activeLanguage.code === 'uk' ? address_uk : address_en}</span>
-                                    )}
-                                </Translate>
+                                <Localized en={address_en} uk={address_uk}/>
                                 <br/>
                                 <a href={`tel:${phone}`} className="has-text-light">{phone}</a>
                             </p>

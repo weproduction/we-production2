@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Navigation from './layout/navigation';
 import Footer from './layout/footer';
@@ -10,6 +10,7 @@ import Videos from './pages/videos';
 import Services from './pages/services';
 import Player from "./pages/player";
 import Contacts from "./pages/contacts";
+import PageNotFound from "./pages/page-not-found";
 
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize } from "react-localize-redux";
@@ -53,10 +54,13 @@ class App extends Component {
                     <ClientsProvider>
                         <FeedbackProvider>
                             <Navigation fixed={window.location.pathname === '/'}/>
-                            <Route exact path="/" component={Home} />
-                            <Route path="/videos/:category?/:tag?" component={Videos} />
-                            <Route path="/services/:service?" component={Services} />
-                            <Route path="/contact" component={Contacts} />
+                            <Switch>
+                                <Route exact path="/" component={Home} />
+                                <Route path="/videos/:category?/:tag?" component={Videos} />
+                                <Route path="/services/:service?" component={Services} />
+                                <Route path="/contact" component={Contacts} />
+                                <Route component={PageNotFound}/>
+                            </Switch>
                             <Footer/>
                             <Player/>
                         </FeedbackProvider>
