@@ -13,8 +13,7 @@ import { Localized } from './localized';
 export class VideoPreview extends React.Component {
 
     static propTypes = {
-        video: PropTypes.any.isRequired,
-        autoStart: PropTypes.bool
+        video: PropTypes.any.isRequired
     };
 
     play() {
@@ -22,15 +21,6 @@ export class VideoPreview extends React.Component {
             type: 'VIDEO_PLAY',
             payload: this.props.video
         })
-    }
-
-    componentDidMount() {
-        const current = window.location.search.substr(1);
-
-        console.log('HERE', current, this.props.video);
-        if (this.props.autoStart || (current == this.props.video)) {
-            this.play()
-        }
     }
 
     render() {

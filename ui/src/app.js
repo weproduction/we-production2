@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Navigation from './layout/navigation';
 import Footer from './layout/footer';
@@ -45,6 +46,14 @@ class App extends Component {
 
         this.props.addTranslationForLanguage(localeEN, "en");
         this.props.addTranslationForLanguage(localeUK, "uk");
+
+        const [, current] = window.location.search.match(/v=(\d+)/) || [];
+        if (current) {
+            this.props.dispatch({
+                type: 'VIDEO_PLAY',
+                payload: current
+            })
+        }
     }
 
     render() {

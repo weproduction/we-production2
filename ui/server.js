@@ -33,7 +33,7 @@ nonSPA_Router.get('/videos/:category?/:tag?', (req,res, next) => {
 
     const category = req.params.category || 'featured';
     const tag = req.params.tag || null;
-    const current_video = require('url').parse(req.url).query;
+    const current_video = req.query.v;
 
     request('http://localhost:3001/video', (err, r, data) => {
         if (err) {

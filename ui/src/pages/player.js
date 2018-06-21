@@ -28,15 +28,11 @@ export default class Player extends React.Component {
     }
 
     componentDidUpdate() {
-        const current = parseInt(window.location.search.substr(1), 10);
         const { video, active, paused } = this.props.player;
 
         if (active && !paused) {
-
-            const path = window.location.pathname + '?' + video;
-
-            console.log('HEER!!!', video, active, paused, path, current);
-            if (current > 0 && current != this.props.video) {
+            const path = window.location.pathname + '?v=' + video;
+            if (window.location.search.length > 1) {
                 window.history.replaceState(null, document.title, path)
             } else {
                 window.history.pushState(null, document.title, path)

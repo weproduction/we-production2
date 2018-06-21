@@ -35,7 +35,7 @@ ReactDOM.render(
     <Provider store={store}>
         <LocalizeProvider store={store}>
             <Router history={history}>
-                <App />
+                <App dispatch={action => store.dispatch(action)} />
             </Router>
         </LocalizeProvider>
     </Provider>
