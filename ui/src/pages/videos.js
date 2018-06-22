@@ -8,6 +8,8 @@ import PageWithMenu from '../layout/page-with-menu';
 
 import { connect } from "react-redux";
 
+import latinize from '../lib/latinize';
+
 function buildTagList(videos, fn) {
     return videos
         .map(x => fn(x))
@@ -43,7 +45,7 @@ export default class Videos extends React.Component {
 
         const category_videos = videos.filter(video => ~video.categories.indexOf(category));
 
-        const visible_videos = category_videos.filter(video => tag === '' || ~video.tags_en.indexOf(tag) || ~video.tags_uk.indexOf(tag));
+        const visible_videos = category_videos.filter(video => tag === '' || ~video.tags.indexOf(tag));
 
         const tags_en = buildTagList(category_videos, video => video.tags_en);
         const tags_uk = buildTagList(category_videos, video => video.tags_uk);
@@ -76,8 +78,8 @@ export default class Videos extends React.Component {
                                     const tags = lang === 'uk' ? tags_uk : tags_en;
 
                                     return tags.map((to, index) => (
-                                        <li className={to === tag ? 'is-active' : ''} key={index}>
-                                            <ActiveLink to={`/videos/${category}/${to}`}>{to}</ActiveLink>
+                                        <li className={latinize(to) === tag ? 'is-active' : ''} key={index}>
+                                            <ActiveLink to={`/videos/${category}/${latinize(to)}`}>{to}</ActiveLink>
                                         </li>
                                     ))
                                 }}

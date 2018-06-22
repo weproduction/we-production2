@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const request = require('request');
+const latinize = require('./src/lib');
 
 const locale_en = require('./src/data/locale.en');
 const locale_uk = require('./src/data/locale.uk');
@@ -47,7 +48,7 @@ nonSPA_Router.get('/:locale/videos/:category?/:tag?', (req,res, next) => {
 
         let video = videos
             .filter(v => ~v.categories.indexOf(category))
-            .filter(v => !tag || ~v.tags_en.indexOf(tag) || ~v.tags_uk.indexOf(tag))
+            .filter(v => !tag || ~v.tags_en.map(latinize).indexOf(tag) || ~v.tags_uk.map(latinize).indexOf(tag))
             .shift();
 
         if (current_video) {
