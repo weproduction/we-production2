@@ -40,10 +40,11 @@ export default class Player extends React.Component {
                 window.history.pushState(null, document.title, path)
             }
 
+            RGA.pageview(window.location.pathname + window.location.search);
+
             RGA.event({
-                category: 'Video',
-                action: 'Play',
-                data: video
+                category: 'Video:' + video,
+                action: 'Play'
             });
         }
     }
