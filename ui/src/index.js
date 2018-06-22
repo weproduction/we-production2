@@ -42,4 +42,6 @@ ReactDOM.render(
     , document.getElementById('root')
 );
 
-RGA.initialize('UA-51587800-3');
+if (window.location.hostname !== 'localhost') {
+    RGA.initialize('UA-51587800-3');
+}
