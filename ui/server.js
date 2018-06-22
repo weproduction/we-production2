@@ -30,11 +30,21 @@ SPA_Router.get('*', (req, res) =>
 
 const nonSPA_Router = express.Router({});
 
+function localize(locale, en, uk) {
+    return locale === 'uk' ? uk : en;
+}
+
 nonSPA_Router.get('/:locale/videos/:category?/:tag?', (req,res, next) => {
 
     const category = req.params.category || 'featured';
     const tag = req.params.tag || null;
     const current_video = req.query.v;
+    const locale = req.params.locale || 'en';
+
+    let title_en = locale_en.video.categories[category] || locale_en.video.link;
+    let title_uk = locale_uk.video.categories[category] || locale_uk.video.link;
+    let description_en = locale_en.description;
+    let description_uk = locale_uk.description;
 
     request('http://localhost:3001/video', (err, r, data) => {
         if (err) {
@@ -53,6 +63,10 @@ nonSPA_Router.get('/:locale/videos/:category?/:tag?', (req,res, next) => {
 
         if (current_video) {
             video = videos.filter(v => v.video === current_video).pop();
+            title_en = video.title_en;
+            title_uk = video.title_uk;
+            description_en = video.description_en;
+            description_uk = video.description_uk;
         }
 
         if (!video) {
@@ -61,14 +75,28 @@ nonSPA_Router.get('/:locale/videos/:category?/:tag?', (req,res, next) => {
 
         const host = req.headers.host;
         const protocol = req.header('X-Forwarded-Proto') || 'http';
+        const by = localize(locale, locale_en.by, locale_uk.by);
+        const title = localize(locale, locale_en.title, locale_uk.title);
         res.render('bot', {
             url: `${protocol}://${host}${req.originalUrl}`,
             type: 'video.other',
             image: video.preview[1080] || video.preview[720],
-            title: `${video.title_en} ${locale_en.by} ${locale_en.title}`,
-            description: video.description_en,
+            title: `${localize(locale, title_en, title_uk)} ${by} ${title}`,
+            description: localize(locale, description_en, description_uk),
         });
     })
+});
+
+nonSPA_Router.get('/:locale/*', (req,res) => {
+    const host = req.headers.host;
+    const protocol = req.header('X-Forwarded-Proto') || 'http';
+    res.render('bot', {
+        url: `${protocol}://${host}${req.originalUrl}`,
+        type: 'website',
+        image: `${protocol}://${host}/img/fb-preview.jpg`,
+        title: localize(locale, locale_en.title, locale_uk.title),
+        description: localize(locale, locale_en.description, locale_uk.description),
+    });
 });
 
 nonSPA_Router.get('/*', (req,res) => {

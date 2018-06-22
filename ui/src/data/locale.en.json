@@ -15,7 +15,9 @@
     "contacts": "Contacts"
   },
   "video": {
-    "link": "Video"
+    "link": "Video",
+    "categories": {
+    }
   },
   "services": {
     "link": "Services"
