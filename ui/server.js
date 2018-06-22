@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const request = require('request');
-const latinize = require('./src/lib');
+const latinize = require('./src/lib/latinize');
 
 const locale_en = require('./src/data/locale.en');
 const locale_uk = require('./src/data/locale.uk');
