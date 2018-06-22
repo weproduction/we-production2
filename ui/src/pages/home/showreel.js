@@ -7,6 +7,7 @@ import { Vimeo } from '../../controls';
 
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
+import * as RGA from 'react-ga';
 
 import './showreel.sass';
 
@@ -46,9 +47,17 @@ export default class Showreel extends React.Component {
 
     componentDidUpdate() {
         if (this.state.playing) {
-            this.playerRef.current.player.play()
+            this.playerRef.current.player.play();
+            RGA.event({
+                category: 'Showreel',
+                action: 'Play'
+            });
         } else {
-            this.playerRef.current.player.pause()
+            this.playerRef.current.player.pause();
+            RGA.event({
+                category: 'Showreel',
+                action: 'Pause'
+            });
         }
     }
 
@@ -63,7 +72,11 @@ export default class Showreel extends React.Component {
         setTimeout(() => {
             this.setState({playing: false});
             this.playerRef.current.player.unload();
-        }, 200)
+        }, 200);
+        RGA.event({
+            category: 'Showreel',
+            action: 'Stop'
+        });
     }
 
     showPauseButton() {

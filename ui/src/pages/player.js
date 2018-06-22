@@ -4,6 +4,8 @@ import {Vimeo} from "../controls";
 
 import { connect } from "react-redux";
 
+import * as RGA from "react-ga";
+
 @connect(
     (state, ownProps = {}) => {
         return {
@@ -37,6 +39,12 @@ export default class Player extends React.Component {
             } else {
                 window.history.pushState(null, document.title, path)
             }
+
+            RGA.event({
+                category: 'Video',
+                action: 'Play',
+                data: video
+            });
         }
     }
 

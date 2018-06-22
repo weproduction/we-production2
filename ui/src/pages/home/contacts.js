@@ -1,8 +1,9 @@
 import React from 'react';
-import { Icon } from 'react-bulma-components';
 import { Translate } from 'react-localize-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Localized } from "../../controls";
+import { Localized, CallNow } from "../../controls";
+
+import * as RGA from 'react-ga';
 
 import './contacts.sass'
 import {withContacts} from '../../context';
@@ -73,6 +74,13 @@ export default class Contacts extends React.Component {
         this.galleryRef.current.classList.remove('is-three-quarters-desktop', 'is-one-quarter-desktop');
     }
 
+    track(action) {
+        RGA.event({
+            category: 'Contacts',
+            action
+        });
+    }
+
     render() {
         const { email, phone, address_en, address_uk} = this.props.contacts;
 
@@ -89,21 +97,14 @@ export default class Contacts extends React.Component {
                                 <Translate id="home.contacts"/>
                             </h2>
                             <p className="content is-size-6">
-                                <a href={`mailto:${email}`} className="has-text-dark">{email}</a>
+                                <a href={`mailto:${email}`} className="has-text-dark" onClick={() => this.track('Email')}>{email}</a>
                                 <br/>
                                 <Localized en={address_en} uk={address_uk}/>
                                 <br/>
-                                <a href={`tel:${phone}`} className="has-text-dark">{phone}</a>
+                                <a href={`tel:${phone}`} className="has-text-dark" onClick={() => this.track('Phone')}>{phone}</a>
                             </p>
 
-                            <a href={`tel:${phone}`} className="button is-primary is-rounded is-outlined">
-                                <Translate id="buttons.call-now"/>
-                                &nbsp;
-                                &nbsp;
-                                <Icon>
-                                    <i className="fas fa-phone"/>
-                                </Icon>
-                            </a>
+                            <CallNow phone={phone} location="Contacts"/>
                         </div>
                     </div>
                     <div className="column is-half-desktop is-hidden-touch gallery-container"

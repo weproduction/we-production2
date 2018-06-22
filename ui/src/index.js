@@ -6,9 +6,9 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter as Router, routerReducer, routerMiddleware } from 'react-router-redux';
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { logger } from 'redux-logger';
+import * as RGA from 'react-ga';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
-import registerServiceWorker from './registerServiceWorker';
 
 import promise from 'redux-promise-middleware';
 import createHistory from 'history/createBrowserHistory';
@@ -42,6 +42,4 @@ ReactDOM.render(
     , document.getElementById('root')
 );
 
-if (process.env.NODE_ENV !== 'production') {
-    registerServiceWorker();
-}
+RGA.initialize('UA-51587800-3');

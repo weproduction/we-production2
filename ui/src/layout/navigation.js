@@ -110,7 +110,7 @@ export default class Navigation extends React.Component {
                         ))}
                     </div>
                     <div className="navbar-end">
-                        <FollowUs className="navbar-item is-hidden-touch"/>
+                        <FollowUs className="navbar-item is-hidden-touch" location="Menu"/>
                         <LocalePicker/>
                     </div>
                 </div>

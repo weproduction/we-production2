@@ -1,9 +1,10 @@
 import React from 'react';
 import Image from 'react-retina-image';
-import { Icon } from 'react-bulma-components';
 import { Translate } from 'react-localize-redux';
 
-import { FollowUs, Localized } from '../controls';
+import * as RGA from 'react-ga';
+
+import {CallNow, FollowUs, Localized} from '../controls';
 
 import { withContacts } from '../context';
 
@@ -11,6 +12,13 @@ import './footer.sass';
 
 @withContacts
 export default class Footer extends React.Component {
+    track(action) {
+        RGA.event({
+            category: 'Footer',
+            action
+        });
+    }
+
     render() {
         const { email, phone, address_en, address_uk} = this.props.contacts;
         return (
@@ -19,7 +27,7 @@ export default class Footer extends React.Component {
                     <div className="columns is-8 is-variable">
                         <div className="column is-one-third-desktop is-full-mobile is-half-tablet">
                             <div className="block is-hidden-desktop is-size-5">
-                                <FollowUs>
+                                <FollowUs location="Footer">
                                     <Translate id={"buttons.follow-us"}/>:
                                 </FollowUs>
                             </div>
@@ -47,7 +55,7 @@ export default class Footer extends React.Component {
                                 <input className="input" type="email" />
                             </div>
                             <div className="block content is-size-6">
-                                <FollowUs>
+                                <FollowUs location="Footer">
                                     <Translate id={"buttons.follow-us"}/>:
                                 </FollowUs>
                             </div>
@@ -57,21 +65,14 @@ export default class Footer extends React.Component {
                                 <Translate id={"home.contacts"}/>
                             </h3>
                             <p className="content is-size-7">
-                                <a href={`mailto:${email}`} className="has-text-light">{email}</a>
+                                <a href={`mailto:${email}`} className="has-text-light" onClick={() => this.track('Email')}>{email}</a>
                                 <br/>
                                 <Localized en={address_en} uk={address_uk}/>
                                 <br/>
-                                <a href={`tel:${phone}`} className="has-text-light">{phone}</a>
+                                <a href={`tel:${phone}`} className="has-text-light" onClick={() => this.track('Phone')}>{phone}</a>
                             </p>
 
-                            <a href={`tel:${phone}`} className="button is-primary is-rounded">
-                                <Translate id="buttons.call-now"/>
-                                &nbsp;
-                                &nbsp;
-                                <Icon>
-                                    <i className="fas fa-phone"></i>
-                                </Icon>
-                            </a>
+                            <CallNow phone={phone} location="Footer"/>
                         </div>
                     </div>
                 </div>

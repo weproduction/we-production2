@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import { Route, Switch, Redirect, IndexRoute } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Translate } from 'react-localize-redux';
+import * as RGA from 'react-ga';
 
 import Navigation from './layout/navigation';
 import Footer from './layout/footer';
@@ -65,6 +66,10 @@ class App extends Component {
                     <ClientsProvider>
                         <FeedbackProvider>
                             <Navigation fixed={window.location.pathname.endsWith('/welcome')}/>
+                            <Route path="/" component={() => {
+                                RGA.pageview(window.location.pathname + window.location.search);
+                                return null;
+                            }}/>
                             <Route exact path="/" render={() => <Redirect to={`/${this.defaultLanguage}/welcome`}/>}/>
                             <Route path="/:locale" component={({match : { params: { locale } }}) => (
                                 <Translate>
