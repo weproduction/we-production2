@@ -4,11 +4,10 @@ import { Translate } from 'react-localize-redux';
 import Image from 'react-retina-image';
 import { Localized } from '../../controls';
 
-import './feedback.sass';
+import './feedback.css';
 import {withFeedback} from "../../context";
 
-@withFeedback
-export default class Feedback extends React.Component {
+class Feedback extends React.Component {
     render() {
         const { feedback } = this.props;
 
@@ -59,3 +58,5 @@ export default class Feedback extends React.Component {
         );
     }
 }
+
+export default withFeedback(Feedback);

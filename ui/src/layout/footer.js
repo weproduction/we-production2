@@ -8,10 +8,9 @@ import {CallNow, FollowUs, Localized} from '../controls';
 
 import { withContacts } from '../context';
 
-import './footer.sass';
+import './footer.css';
 
-@withContacts
-export default class Footer extends React.Component {
+class Footer extends React.Component {
     track(action) {
         RGA.event({
             category: 'Footer',
@@ -80,3 +79,5 @@ export default class Footer extends React.Component {
         )
     }
 }
+
+export default withContacts(Footer);

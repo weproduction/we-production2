@@ -15,7 +15,7 @@ import createHistory from 'history/createBrowserHistory';
 
 import reducers from "./reducers";
 
-import './index.sass';
+import './index.css';
 
 import App from './app';
 

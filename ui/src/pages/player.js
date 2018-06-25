@@ -6,14 +6,7 @@ import { connect } from "react-redux";
 
 import * as RGA from "react-ga";
 
-@connect(
-    (state, ownProps = {}) => {
-        return {
-            player: state.player
-        }
-    }
-)
-export default class Player extends React.Component {
+class Player extends React.Component {
 
     playerRef = React.createRef();
 
@@ -78,3 +71,9 @@ export default class Player extends React.Component {
         )
     }
 }
+
+export default connect(Player,
+    (state) => ({
+        player: state.player
+    })
+);

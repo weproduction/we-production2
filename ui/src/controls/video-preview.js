@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 
 import { Icon } from 'react-bulma-components';
 
-import './video-preview.sass';
+import './video-preview.css';
 
 import { connect } from 'react-redux';
 
 import { Localized } from './localized';
 
-@connect()
-export class VideoPreview extends React.Component {
+class VideoPreview_ extends React.Component {
 
     static propTypes = {
         video: PropTypes.any.isRequired
@@ -62,3 +61,5 @@ export class VideoPreview extends React.Component {
         )
     }
 }
+
+export const VideoPreview = connect(VideoPreview_);

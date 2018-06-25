@@ -6,8 +6,7 @@ import { withContacts } from '../context';
 
 import * as RGA from 'react-ga';
 
-@withContacts
-export class FollowUs extends React.Component {
+class FollowUs_ extends React.Component {
 
     track(action) {
         RGA.event({
@@ -45,3 +44,5 @@ export class FollowUs extends React.Component {
         )
     }
 }
+
+export const FollowUs = withContacts(FollowUs_);

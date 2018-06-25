@@ -11,15 +11,7 @@ import Feedback from './home/feedback';
 
 import { connect } from "react-redux";
 
-@connect(
-    (state, ownProps = {}) => {
-        return {
-            videos: state.videos,
-            feedback: state.feedback
-        }
-    }
-)
-export default class Home extends Component {
+class Home extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
     }
@@ -43,3 +35,10 @@ export default class Home extends Component {
         )
     }
 }
+
+export default connect(Home,
+    (state) => ({
+        videos: state.videos,
+        feedback: state.feedback
+    })
+);

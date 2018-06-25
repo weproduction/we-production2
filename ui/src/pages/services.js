@@ -11,7 +11,7 @@ import Crew from './services/crew';
 import Drone from './services/drone';
 import Multicam from './services/multicam';
 
-import './services/index.sass'
+import './services/index.css'
 export default class Services extends React.Component {
     state = {
         services: ['project', 'crew', 'drone', 'multicam']

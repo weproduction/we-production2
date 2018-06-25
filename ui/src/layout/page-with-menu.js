@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './page-with-menu.sass'
+import './page-with-menu.css'
 
 export default class PageWithMenu extends React.Component {
 

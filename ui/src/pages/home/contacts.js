@@ -5,14 +5,13 @@ import { Localized, CallNow } from "../../controls";
 
 import * as RGA from 'react-ga';
 
-import './contacts.sass'
+import './contacts.css'
 import {withContacts} from '../../context';
 
 import { Subject, interval, merge, of } from 'rxjs';
 import { map, switchMap, mapTo } from 'rxjs/operators'
 
-@withContacts
-export default class Contacts extends React.Component {
+class Contacts extends React.Component {
 
     state = {
         photos: [],
@@ -137,3 +136,5 @@ export default class Contacts extends React.Component {
         )
     }
 }
+
+export default withContacts(Contacts);

@@ -4,7 +4,7 @@ import { Translate } from 'react-localize-redux';
 
 import { ActiveLink, FollowUs, LocalePicker } from '../controls';
 
-import './navigation.sass';
+import './navigation.css';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators'
 

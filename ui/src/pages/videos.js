@@ -18,14 +18,7 @@ function buildTagList(videos, fn) {
         .filter(x => x != null);
 }
 
-@connect(
-    (state, ownProps = {}) => {
-        return {
-            videos: state.videos
-        }
-    }
-)
-export default class Videos extends React.Component {
+class Videos extends React.Component {
 
     state = {
         categories: ['promotion', 'corporate', 'social', 'sport', 'music', 'concerts']
@@ -100,3 +93,9 @@ export default class Videos extends React.Component {
         )
     }
 }
+
+export default connect(Videos,
+    (state) => ({
+        videos: state.videos
+    })
+);

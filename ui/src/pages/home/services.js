@@ -8,7 +8,7 @@ import { ActiveLink} from "../../controls";
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 
-import './services.sass';
+import './services.css';
 
 export default class Services extends React.Component {
 

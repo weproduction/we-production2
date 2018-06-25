@@ -3,18 +3,7 @@ import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import PropTypes from 'prop-types';
 
-@connect(
-    (state, ownProps = {}) => {
-        return {
-            localize: state.localize
-        }
-    }, (dispatch, ownProps) => ({
-        navigateTo: (location) => {
-            dispatch(push(location));
-        }
-    })
-)
-export class ActiveLink extends React.Component {
+class ActiveLink_ extends React.Component {
     static propTypes = {
         to: PropTypes.string.isRequired,
         tagName: PropTypes.oneOf(['a', 'button']),
@@ -54,3 +43,11 @@ export class ActiveLink extends React.Component {
         }
     }
 }
+
+export const ActiveLink = connect(ActiveLink_,
+    (state) => ({
+        localize: state.localize
+    }), (dispatch) => ({
+        navigateTo: (location) => dispatch(push(location))
+    })
+);

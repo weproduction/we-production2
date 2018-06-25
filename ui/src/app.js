@@ -22,7 +22,6 @@ import localeUK from './data/locale.uk';
 
 import { ContactsProvider, CrewProvider, ClientsProvider, FeedbackProvider } from "./context";
 
-@withLocalize
 class App extends Component {
 
     constructor(props) {
@@ -95,4 +94,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withLocalize(App);

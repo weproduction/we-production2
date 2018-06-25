@@ -9,7 +9,7 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import * as RGA from 'react-ga';
 
-import './showreel.sass';
+import './showreel.css';
 
 export default class Showreel extends React.Component {
 

@@ -3,11 +3,10 @@ import Image from 'react-retina-image';
 
 import { Translate } from 'react-localize-redux';
 
-import './clients.sass';
+import './clients.css';
 import {withClients} from "../../context";
 
-@withClients
-export default class Clients extends React.Component {
+class Clients extends React.Component {
 
     render() {
         const { faces, logos } = this.props;
@@ -65,3 +64,5 @@ export default class Clients extends React.Component {
         );
     }
 }
+
+export default withClients(Clients);

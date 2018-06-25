@@ -3,12 +3,11 @@ import Image from 'react-retina-image';
 import { Icon } from 'react-bulma-components';
 import { Translate } from 'react-localize-redux';
 
-import './crew.sass';
+import './crew.css';
 import {withCrew} from "../../context";
 import { Localized, Reveal } from "../../controls";
 
-@withCrew
-export default class Crew extends React.Component {
+class Crew extends React.Component {
 
     render() {
         const { crew } = this.props;
@@ -78,3 +77,5 @@ export default class Crew extends React.Component {
         )
     }
 }
+
+export default withCrew(Crew);

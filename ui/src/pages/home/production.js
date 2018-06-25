@@ -3,7 +3,7 @@ import React from 'react';
 import { Translate } from 'react-localize-redux';
 import { Reveal } from '../../controls'
 
-import './production.sass';
+import './production.css';
 
 const steps = [
     'Ідея та сценарій',
