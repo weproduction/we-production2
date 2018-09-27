@@ -46,7 +46,7 @@ export default class Project extends Component {
                     <Translate id="services.project.block4"/></p>
                 </div>
                 <div className="block">
-                    <ActiveLink to="/" className="has-text-dark is-size-7">
+                    <ActiveLink to="/welcome" className="has-text-dark is-size-7">
                         <Icon>
                             <i className="fas fa-arrow-left"></i>
                         </Icon>

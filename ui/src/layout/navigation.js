@@ -88,7 +88,7 @@ export default class Navigation extends React.Component {
         return (
             <nav className={`navbar is-fixed-top ${fixedClass}`} ref={this.navbarRef}>
                 <div className="navbar-brand">
-                    <ActiveLink to="/" className="navbar-item" onNavigate={() => this.goTop()}>
+                    <ActiveLink to="/welcome" className="navbar-item" onNavigate={() => this.goTop()}>
                         <img src="/img/logo@2x.png" alt="We Production"/>
                     </ActiveLink>
                     <div className="navbar-burger burger" onClick={() => this.burgerClickHandler()}>
