@@ -11,7 +11,7 @@ export default class Project extends Component {
             <Fragment>
                 <div className="block content">
                     <h2 className="title is-2 has-text-primary">
-                        <Translate id="services.project.header"/>
+                        <Translate id="services.project.title"/>
                     </h2>
                     <p className="subtitle has-font-caveat is-4 is-spaced">
                         <Translate id="services.project.subtitle"/>

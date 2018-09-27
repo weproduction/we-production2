@@ -11,7 +11,7 @@ export default class Multicam extends Component {
             <Fragment>
                 <div className="block content">
                     <h2 className="title is-2 has-text-primary">
-                        <Translate id="services.multicam.header"/>
+                        <Translate id="services.multicam.title"/>
                     </h2>
                     <p className="subtitle has-font-caveat is-4 is-spaced">
                         <Translate id="services.multicam.subtitle"/>
