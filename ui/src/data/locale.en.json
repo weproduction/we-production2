@@ -34,30 +34,31 @@
       "subtitle": "The full cycle of video production",
       "details": "We implement a project from scratch – from the idea to the end credits. You don’t ever need to hire screenwriters, look for locations or filming permission. We go all the work and send you the final result.",
       "steps": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
-        "6": ""
+        "1": "Idea and script",
+        "2": "Casting",
+        "3": "Location scouting",
+        "4": "Shootings, editing",
+        "5": "Post-production",
+        "6": "Results"
       }
     }
   },
   "video": {
     "link": "",
     "categories": {
-      "promotion": "",
-      "corporate": "",
-      "social": "",
-      "sport": "",
-      "music": "",
-      "concerts": ""
+      "promotion": "Commercial",
+      "corporate": "Corporate",
+      "social": "Social",
+      "sport": "Sport",
+      "music": "Music",
+      "concerts": "Concerts"
     }
   },
   "services": {
-    "link": "",
+    "link": "Services",
     "project": {
-      "header": "\"And then – bam! – the packshot\"",
+      "title": "\"And then – bam! – the packshot\"",
+      "header": "Turnkey",
       "subtitle": "Tell us what the idea is. We will do the rest.",
       "block1": {
         "title": "Introduction",
@@ -74,7 +75,8 @@
       "block4": "You watch the video once again as you saved a lot of time. "
     },
     "crew": {
-      "header": "We film everything that moves",
+      "title": "We film everything that moves",
+      "header": "Crew",
       "subtitle": "We turn into reality the most daring ideas of the director. We undertake projects of any level of complexity.",
       "block1": {
         "title": "Universal camera crew",
@@ -91,7 +93,8 @@
       "block4": "Tell us more about your project, and we’ll prepare for you a great offer."
     },
     "drone": {
-      "header": "We shoot dreams of flying",
+      "title": "We shoot dreams of flying",
+      "header": "Aeroshootings",
       "subtitle": "As well as mass events, sports matches, architecture objects, nature, landscapes – everything looks breathtakingly if viewed from the sky.",
       "block1": {
         "title": "Filming with a quadcopter or an octocopter",
@@ -108,7 +111,8 @@
       "block4": "Tell us more about your project, and we’ll prepare for you a great offer."
     },
     "multicam": {
-      "header": "We bring a TV station",
+      "title": "We bring a TV station",
+      "header": "Multi-camera shootings",
       "subtitle": "We record an event or a game with 4-16 cameras in sync, edit the video, and go live.",
       "block1": {
         "title": "We hardly can lose a moment",
