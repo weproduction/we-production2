@@ -36,9 +36,9 @@ class Home extends Component {
     }
 }
 
-export default connect(Home,
+export default connect(
     (state) => ({
         videos: state.videos,
         feedback: state.feedback
     })
-);
+)(Home);

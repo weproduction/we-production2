@@ -44,10 +44,10 @@ class ActiveLink_ extends React.Component {
     }
 }
 
-export const ActiveLink = connect(ActiveLink_,
+export const ActiveLink = connect(
     (state) => ({
         localize: state.localize
     }), (dispatch) => ({
         navigateTo: (location) => dispatch(push(location))
     })
-);
+)(ActiveLink_);

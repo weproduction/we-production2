@@ -72,8 +72,8 @@ class Player extends React.Component {
     }
 }
 
-export default connect(Player,
+export default connect(
     (state) => ({
         player: state.player
     })
-);
+)(Player);

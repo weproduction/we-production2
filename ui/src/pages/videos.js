@@ -94,8 +94,8 @@ class Videos extends React.Component {
     }
 }
 
-export default connect(Videos,
+export default connect(
     (state) => ({
         videos: state.videos
     })
-);
+)(Videos);
