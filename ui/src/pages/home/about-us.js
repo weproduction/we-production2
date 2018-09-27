@@ -30,6 +30,9 @@ export default class AboutUs extends React.Component {
                                 </p>
                             </div>
                             <div className="block">
+                                <h3 class="title is-4">
+                                  <Translate id="home.our-portfolio"/>
+                                </h3>
                                 <div className="columns is-variable is-0 is-multiline is-fullwidth is-mobile">
                                     <Reveal refs={this.categoryRefs} config={{ duration: 1000 }} delay={50}>
                                         {categories.map((category, index) => (

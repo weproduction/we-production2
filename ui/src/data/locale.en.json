@@ -1,6 +1,6 @@
 {
-  "title": "We Production Studio",
-  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+  "title": "We Production",
+  "description": "Full-service video production studio based in Lviv, Ukraine. Filming and producing video anywhere in the world.",
   "by": "by",
   "page-not-found": "Page not found",
   "buttons": {
@@ -8,17 +8,54 @@
     "back-to-home": "Back",
     "play-showreel": "Play Showreel",
     "pause-showreel": "Pause",
-    "call-now": "Call now"
+    "call-now": "Call now",
+    "all": "All",
+    "follow-us": "Follow us"
   },
   "home": {
     "link": "Home",
-    "contacts": "Contacts"
+    "about-us": "Full-service video production studio based in Lviv, Ukraine. Filming and producing video anywhere in the world.",
+    "our-portfolio": "We are proud of our work",
+    "clients": {
+      "header": "We love our clients",
+      "faces": "",
+      "logos": ""
+    },
+    "contacts": "We respond instantly",
+    "crew": {
+      "header": "We work easily and seamlessly",
+      "subtitle": "",
+      "details": "We operate as a team from 2013 and we finish each other’s sentences. We carefully plan and implement projects without glitches or extra moves. We’ll save your time and a budget, and surprise you with the result."
+    },
+    "feedback": "We appreciate your feedback",
+    "services": "We are open to new projects",
+    "production": {
+      "header": "We will make a miracle for you",
+      "subtitle": "The full cycle of video production",
+      "details": "We implement a project from scratch – from the idea to the end credits. You don’t ever need to hire screenwriters, look for locations or filming permission. We go all the work and send you the final result.",
+      "steps": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": ""
+      }
+    }
   },
   "video": {
-    "link": "Video"
+    "link": "",
+    "categories": {
+      "promotion": "",
+      "corporate": "",
+      "social": "",
+      "sport": "",
+      "music": "",
+      "concerts": ""
+    }
   },
   "services": {
-    "link": "Services",
+    "link": "",
     "project": {
       "header": "\"And then – bam! – the packshot\"",
       "subtitle": "Tell us what the idea is. We will do the rest.",
