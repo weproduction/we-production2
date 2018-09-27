@@ -18,29 +18,32 @@ export default class Crew extends Component {
                     </p>
                 </div>
                 <div className="block content">
-                    <p className="is-size-6">Вашому проекту бракує злагодженої знімальної команди?
-                        Потрібні люди котрі вміють працювати як з бюджетним, так і з професійним
-                        обладнанням? We Production пропонує полуши знімальної групи для Вас (фокуспулер,
-                        інженер камери, оператор-постановних).</p>
+                    <h5 className="title is-5">
+                      <Translate id="services.crew.block1.title"/>
+                    </h5>
+                    <p className="is-size-6">
+                      <Translate id="services.crew.block1.content"/>
+                    </p>
                 </div>
                 <div className="block content">
-                    <h5 className="title is-5">Ми подбаємо про забезпечення процесу зйомки на ваших
-                        проектах: репортажі, телезйомка, зйомка кліпів, зйомка фільмів.</h5>
+                    <h5 className="title is-5">
+                      <Translate id="services.crew.block2.title"/>
+                    </h5>
+                    <p className="is-size-6">
+                      <Translate id="services.crew.block2.content"/>
+                    </p>
                 </div>
                 <div className="block content">
-                    <h5 className="title is-5">Переваги замовлення знімальної групи We production</h5>
-                    <ul className="is-size-6">
-                        <li>Наші спеціалісти вміють працювати швидко і злагоджено</li>
-                        <li>Ви не витрачаєте власного часу на організацію процесу зйомок та підбір команди</li>
-                        <li>Ми вміємо працювати з обладнанням різного класу та якості</li>
-                        <li>Ви можете додатково замовити монтаж та кольорокорекцію відзнятого матеріалу</li>
-                    </ul>
+                    <h5 className="title is-5">
+                      <Translate id="services.crew.block3.title"/>
+                    </h5>
+                    <p className="is-size-6">
+                      <Translate id="services.crew.block3.content"/>
+                    </p>
                 </div>
                 <div className="block content">
-                    <p className="is-size-7">
-                        * Вартість проекту формується індивідуально, відповідно до потреб для виконання ідеї.</p>
-                    <p className="title is-6">
-                        За детальною інформацією звертайтесь - 093</p>
+                    <p className="is-size-6">
+                      <Translate id="services.crew.block4"/></p>
                 </div>
                 <div className="block">
                     <ActiveLink to="/" className="has-text-dark is-size-7">
