@@ -20,7 +20,75 @@
     }
   },
   "services": {
-    "link": "Services"
+    "link": "Services",
+    "project": {
+      "header": "\"And then – bam! – the packshot\"",
+      "subtitle": "Tell us what the idea is. We will do the rest.",
+      "block1": {
+        "title": "Introduction",
+        "content": "We start from scratch making music videos, commercials, movies, and shows. We write a script based on your idea – or look for a new one for your video. We draw a storyboard, invite actors. We find the location, get permissions, and plan the production."
+      },
+      "block2": {
+        "title": "Turning point",
+        "content": "The actual filming. We arrange and control the whole process, capture the best shots and finish the work in our studio. We improve colors and sound, add bumpers, animations or video infographics – if you need them."
+      },
+      "block3": {
+        "title": "Pay-off",
+        "content": "We show you the final result. If corrections are left, then we make it even more final. We give you back the stunning, touching or exciting completely produced video – exactly how you wanted it, in your favorite format."
+      },
+      "block4": "You watch the video once again as you saved a lot of time. "
+    },
+    "crew": {
+      "header": "We film everything that moves",
+      "subtitle": "We turn into reality the most daring ideas of the director. We undertake projects of any level of complexity.",
+      "block1": {
+        "title": "Universal camera crew",
+        "content": "Director of photography, camera assistant, and focus puller — a solid coordinated team for most needs. We do wonders with low-cost cameras and gear. We unleash all the power of professional equipment."
+      },
+      "block2": {
+        "title": "The wide range of filming services",
+        "content": "We carry out the tasks of different scales. From shooting corporate events, presentations, and conferences to creating TVCs, promotional or music videos. If you can imagine it, then we can film it."
+      },
+      "block3": {
+        "title": "Everything is under control",
+        "content": "We will help you to arrange the entire production. We’ll take care of the equipment proper functioning, and of the footage high quality. We can also do video editing and color correction before sending you the final video."
+      },
+      "block4": "Tell us more about your project, and we’ll prepare for you a great offer."
+    },
+    "drone": {
+      "header": "We shoot dreams of flying",
+      "subtitle": "As well as mass events, sports matches, architecture objects, nature, landscapes – everything looks breathtakingly if viewed from the sky.",
+      "block1": {
+        "title": "Filming with a quadcopter or an octocopter",
+        "content": "We operate the coolest filming drones that you can only get in Ukraine. We shoot from a maximal height of 7 km and at the speed up to 94 km/h. We create amazing aerial movies in 4K with frame rates up to 60 FPS."
+      },
+      "block2": {
+        "title": "We do incredible things",
+        "content": "Our drone camera operator has the pilot level 29 (on DJI) with flight record over 900 km. We are able to shoot aerial videos even in difficult terrain like among buildings, between rocks or trees in the woods. We film fast objects on the ground (motorcycles, cars) or moving objects in the air (airplanes, balloons, parachute jumpings, etc.)."
+      },
+      "block3": {
+        "title": "Aerial filming services",
+        "content": "Shots made with a drone will successfully complete commercials, tourist or sports videos, music videos or live recordings. Besides filming, we do editing, sound, and video design. We can add any titles and graphics to the final video."
+      },
+      "block4": "Tell us more about your project, and we’ll prepare for you a great offer."
+    },
+    "multicam": {
+      "header": "We bring a TV station",
+      "subtitle": "We record an event or a game with 4-16 cameras in sync, edit the video, and go live.",
+      "block1": {
+        "title": "We hardly can lose a moment",
+        "content": "We show the most important things from different points and angles. We capture every moment of the event in various ways. Everything that happens in real time, we can write for sure with no second take."
+      },
+      "block2": {
+        "title": "Multi-camera video production",
+        "content": "Multicam is essential for recording sports events and live performances, producing music videos, creating commercials, making TV shows or movies. We have gear and a perfect team for any given project."
+      },
+      "block3": {
+        "title": "Outside broadcasting",
+        "content": "We have lights, cameras, consoles, monitors, generators, broadcasting tools – and a film crew of 9 people. We can stream online or TV broadcast with studio quality even from the most remote place of the planet."
+      },
+      "block4": "Tell us more about your project, and we’ll prepare for you a great offer."
+    }
   },
   "contacts": {
     "link": "Contacts"
